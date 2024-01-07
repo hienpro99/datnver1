@@ -1,0 +1,813 @@
+<html lang="en">
+
+<head>
+  <title>Thông báo</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+    .mess {
+      position: relative;
+      display: inline-block;
+    }
+
+    .displayNone {
+      display: none;
+    }
+
+    .mess::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background-color: white;
+      transition: width 0.5s ease-in-out;
+    }
+
+    .mess:hover::after {
+      width: 100%;
+    }
+
+    .text-inputform {
+      resize: none;
+      width: 100%;
+      outline: unset !important;
+      height: 65%;
+      border: 0.5px solid #838383;
+      padding: 7px;
+      border-radius: 8px;
+    }
+
+    .box-notification {
+      height: 91%;
+      width: 96%;
+      margin: 0 14px;
+      padding: 14px;
+      background: #f1f1f1;
+      overflow: auto;
+    }
+
+    .text-title-Notification {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      padding: 8px;
+      height: 9%;
+    }
+
+    .width-tab {
+      width: 49%;
+      height: 100%;
+      background: white;
+    }
+
+    /*  dropdow*/
+    .dropdown {
+      width: 90%;
+      position: relative;
+      display: inline-block;
+    }
+
+    .search {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid;
+      border-radius: 8px;
+      outline: unset;
+    }
+
+    .search-err {
+      width: 100%;
+      padding: 5px;
+      border: 2px solid red;
+      border-radius: 8px;
+      outline: unset;
+    }
+
+    .options {
+      display: none;
+      position: absolute;
+      z-index: 1;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      max-height: 200px;
+      overflow-y: scroll;
+    }
+
+    .option {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      background-color: #f2f2f2;
+    }
+
+    .text-delete {
+      width: 16%;
+      cursor: pointer;
+      text-align: end;
+      padding-right: 14px;
+      color: red;
+      font-family: sans-serif;
+    }
+
+    .text-err {
+      text-align: center;
+      color: red;
+      font-weight: 600;
+      font-size: 17px;
+    }
+
+    .input-err {
+      resize: none;
+      width: 100%;
+      outline: unset !important;
+      height: 65%;
+      border: 2px solid red;
+      padding: 7px;
+      border-radius: 8px;
+    }
+
+    .box-delete {
+      display: flex;
+      justify-content: end;
+      margin-bottom: 3px;
+      height: 8%;
+      align-items: center;
+    }
+
+
+    .body-Main {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+
+    .box-Main-One {
+      width: 17%;
+      height: 100%;
+      background-color: rgba(49, 46, 129, var(--tw-bg-opacity));
+      display: flex;
+      flex-direction: column;
+    }
+
+    .box-Text-Title {
+      background-color: rgba(55, 48, 163, var(--tw-bg-opacity));
+      height: 13%;
+      width: 100%;
+    }
+
+    .text-Title {
+      color: white;
+      font-size: 24px;
+      padding: 24px;
+      font-family: sans-serif;
+      font-weight: 600;
+    }
+
+    .box-Main-Two {
+      width: 84%;
+      height: 100%;
+    }
+
+    .box-Main-Extra {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .box-infomation {
+      width: 100%;
+      height: 11%;
+    }
+
+    .information {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: space-between;
+      padding: 0 18px;
+      background: white;
+      align-items: center;
+    }
+
+    .information-Admin {
+      display: flex;
+      width: 8%;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .link-a:hover {
+      text-decoration: none;
+    }
+
+    .link-a {
+      color: black;
+      font-size: 16px;
+      font-family: sans-serif;
+    }
+
+    .box-order-Main {
+      width: 100%;
+      height: 89%;
+    }
+
+
+    .item-click {
+      height: 87%;
+      width: 100%;
+    }
+
+    .load-Spinner {
+      padding: 20%;
+      width: 100%;
+      text-align: center;
+    }
+
+    .box-Main {
+      margin: 14px 8px;
+      width: 99%;
+      height: 96%;
+    }
+
+    .box-Main-Notification {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: space-around;
+    }
+
+    .form-submit {
+      height: 21%;
+      width: 97%;
+      margin: 0 9px;
+    }
+
+    .box-content-Notification {
+      height: 70%;
+      padding: 10px 0;
+      width: 100%;
+    }
+
+    .css-buttom {
+      margin-top: 8px;
+    }
+
+    .display_None {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-200">
+<div id="dataALL">
+  <div class="body-Main">
+    <div class="box-Main-One">
+      <div class="box-Text-Title">
+        <div class="text-Title">Shop BipBip</div>
+      </div>
+      <div class="item-click">
+        <a href="/statistic" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
+           style="text-decoration: none ">
+          <div class="flex" style=" padding: 12px;">
+            <div>
+              <img class="w-5 h-5" src="analytics.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100 ">Thống kê</div>
+          </div>
+        </a>
+        <a href="/home" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
+           style="display: flex; text-decoration: none ">
+          <div class="flex" style=" padding: 12px;">
+            <div>
+              <img class="w-5 h-5" src="dashboard.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100 ">Đơn Hàng</div>
+          </div>
+          <span class="badge" style="color: white;font-size: 14px;">\{{donHangMoi}}</span>
+        </a>
+        <a href="/mess" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none">
+          <div class="flex" style="padding: 12px;">
+            <div>
+              <img class="w-5 h-5 " src="messages.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100 ">Tin Nhắn</div>
+          </div>
+          <span class="badge" style="color: white;font-size: 14px;">\{{tinNhanMoi}}</span>
+        </a>
+        <a href="/notifications" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+           style="border-bottom-width: 1px;text-decoration: none">
+          <div class="flex" style=" padding: 12px;">
+            <div>
+              <img class="w-5 h-5" src="notifications.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100">Thông báo</div>
+          </div>
+        </a>
+        <a href="/accountManagement" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none">
+          <div class="flex" style="padding: 12px;">
+            <div>
+              <img class="w-5 h-5 " src="iconuser.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100 ">Quản Lý người dùng</div>
+          </div>
+        </a>
+        <a href="/warehouse" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
+          <div class="flex" style=" padding: 12px;">
+            <div>
+              <img class="w-5 h-5" src="kho.svg" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100">Kho Hàng</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="box-Main-Two">
+      <div class="box-Main-Extra">
+        <div class="box-infomation">
+          <div class="information">
+            <div class="information-Admin">
+              <img src="person.png" class="w-10 h-10" alt="">
+              <span>Admin</span>
+            </div>
+            <div>
+              <a class="link-a" href="/login">Đăng xuất</a>
+            </div>
+          </div>
+        </div>
+        <!--Top navbar-->
+        <div class="box-order-Main">
+
+          <div :class="checkStatus ? ' ' : 'display_None' " class="load-Spinner">
+            <div class="spinner-border text-primary"></div>
+          </div>
+
+          <div id="hienThidata" :class="checkStatus ? 'display_None' : ' ' ">
+            <div class="box-Main">
+              <div class="box-Main-Notification">
+                <div class="width-tab">
+                  <div class="text-title-Notification">
+                    Thông báo tất cả
+                  </div>
+                  <div class="form-submit">
+                    <form @submit.prevent="submitNotificationAllApp">
+                      <div>
+                    <textarea rows="4" cols="50" :class="checkInputNotificationAll ?  'input-err' : 'text-inputform' "
+                              type="text"
+                              v-model="formDataAllApp.noiDung"></textarea>
+                        <!--                  <div v-if="checkInputNotificationAll === true " class="text-err">Vui lòng điền thông tin</div>-->
+                        <div class="css-buttom">
+                          <button class="btn btn-primary" style="width: 100%;" type="submit">Gửi</button>
+                        </div>
+                      </div>
+                    </form>
+
+                  </div>
+
+                  <div v-if="dataNotificationApp.length !== 0" class="box-content-Notification">
+                    <div class="box-delete">
+                      <div class="text-delete" @click="openModal">Xóa tất cả</div>
+                    </div>
+                    <div class="box-notification">
+                      <div style=" padding: 8px; background: #60eab1; border-radius: 8px; margin-bottom: 8px"
+                           v-for="item in dataNotificationApp">
+                        <div>\{{item.noiDung}}</div>
+                        <div style="text-align: end;font-weight: 600;margin-top: 8px;">\{{formatDate(item.date)}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="width-tab">
+                  <div class="text-title-Notification">
+                    Thông báo cho 1 người dùng
+                  </div>
+                  <div class="form-submit">
+                    <form @submit.prevent="submitOneNotification">
+                      <div>
+                    <textarea rows="4" cols="50" :class="checkInputNotificationOne ?  'input-err' : 'text-inputform' "
+                              type="text"
+                              v-model="formData.noiDung"></textarea>
+                        <div class="css-buttom">
+                          <div class="dropdown">
+                            <input type="text" :class="checkInputUserNameOne ?'search-err': 'search'" id="searchInput"
+                                   placeholder="Tài khoản" autocomplete="off"
+                                   v-model="formData.userName"
+                            >
+                            <div class="options">
+                              <div class="option" v-for="item in nameUserAll">\{{item}}</div>
+                            </div>
+                          </div>
+
+
+                          <button class="btn btn-primary" type="submit">Gửi</button>
+
+                        </div>
+                        <div :class="{'displayNone':checkThongTin}"
+                             style="color: red;font-weight: 700;font-family: sans-serif">
+                          Tài khoản không đúng vui lòng nhập lại
+                        </div>
+                      </div>
+                    </form>
+
+                  </div>
+                  <div v-if="dataNotificationOneApp.length !== 0" class="box-content-Notification">
+                    <div class="box-delete">
+                      <div class="text-delete" @click="openModalXoa">Xóa tất cả</div>
+                    </div>
+                    <div class="box-notification">
+                      <div style="padding: 8px; background: #60eab1; border-radius: 8px;margin-bottom: 8px"
+                           v-for="item in dataNotificationOneApp">
+                        <div style="font-weight: 600;margin-bottom: 8px;">
+                          Tài khoản: \{{item.userName}}
+                        </div>
+                        <div>\{{item.noiDung}}</div>
+                        <div style="text-align: end;font-weight: 600;margin-top: 8px;">\{{formatDate(item.date)}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="xacNhan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa toàn bộ thông báo không ?</h5>
+          <button type="button" class="close" @click="closeModal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <button type="button" class="btn btn-secondary"
+                    data-dismiss="modal"> Thoát
+            </button>
+            <button @click="deleteAllNotification" type="button" class="btn btn-danger">Xác nhận</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="xacNhanXoa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa toàn bộ thông báo cho người dùng không
+            ?</h5>
+          <button type="button" class="close" @click="closeModalXoa" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <button type="button" class="btn btn-secondary"
+                    data-dismiss="modal"> Thoát
+            </button>
+            <button @click="deleteAllNotificationOne" type="button" class="btn btn-danger">Xác nhận</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script>
+  var vm = new Vue({
+    el: "#dataALL",
+    data: {
+      idUser: '',
+      formDataAllApp: {
+        noiDung: ''
+      },
+      formData: {
+        userName: '',
+        noiDung: ''
+      },
+      tinNhanMoi: 0,
+      donHangMoi: 0,
+      dataNotificationApp: {},
+      dataNotificationOneApp: {},
+      nameUserAll: {},
+      checkThongTin: true,
+      checkInputNotificationAll: false,
+      checkInputNotificationOne: false,
+      checkInputUserNameOne: false,
+      checkStatus: true
+    },
+    mounted() {
+      const socket = io();
+      const self = this;
+      socket.on('server-send', () => {
+        self.GetAllDataChat();
+        self.GetDataCart();
+        self.GetDataNameUser();
+        if (self.idUser.length > 0) {
+          self.OpenChatUser(self.idUser);
+        }
+      });
+
+      this.socket = socket;
+
+    },
+    beforeDestroy() {
+      const socket = io();
+      if (socket) {
+        this.socket.disconnect();
+      }
+    },
+
+    methods: {
+      openModal() {
+        $('#xacNhan').modal('show');
+      },
+      closeModal() {
+        $('#xacNhan').modal('hide');
+      },
+
+      openModalXoa() {
+        $('#xacNhanXoa').modal('show');
+      },
+      closeModalXoa() {
+        $('#xacNhanXoa').modal('hide');
+      },
+      formatDate(value) {
+        const date = new Date(value);
+
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+
+        const formattedDate = `${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`;
+        const formattedTime = date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+
+        return `${formattedDate} - ${formattedTime}`;
+      },
+      GetAllDataChat: function () {
+        var self = this;
+        fetch('/chatAllShop', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+            .then(response => response.json())
+            .then(data => {
+              const sortedData = data.sort((a, b) => {
+                if (a.status === b.status) {
+                  return 0;
+                }
+                return a.status ? -1 : 1;
+              });
+              self.tinNhanMoi = sortedData.filter(item => item.status === true).length
+              self.checkStatus = false
+            })
+            .catch(error => {
+              console.error(error);
+            });
+      },
+      GetDataCart: function () {
+        var self = this;
+        fetch('/loadDataChoXacNhan', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+            .then(response => response.json())
+            .then(data => {
+              self.donHangMoi = data.length
+            })
+            .catch(error => {
+              console.error(error);
+            });
+      },
+      GetDataAllNotification: function () {
+        var self = this;
+        fetch('/dataNotification', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+            .then(response => response.json())
+            .then(data => {
+              self.dataNotificationApp = data
+            })
+            .catch(error => {
+              console.error(error);
+            });
+      },
+
+      GetDataAllOneNotification: function () {
+        var self = this;
+        fetch('/dataAllNotificationOneUser', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+            .then(response => response.json())
+            .then(data => {
+              self.dataNotificationOneApp = data
+              console.log(self.dataNotificationOneApp)
+            })
+            .catch(error => {
+              console.error(error);
+            });
+      },
+      GetDataNameUser: function () {
+        const self = this;
+        fetch('/dataNameUser', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+            .then(response => response.json())
+            .then(data => {
+              self.nameUserAll = data;
+              setTimeout(function () {
+                self.selectName();
+              }, 1000);
+            })
+            .catch(error => {
+              console.error(error);
+            });
+      },
+      selectName: function () {
+        var self = this
+        const searchInput = document.getElementById('searchInput');
+        const options = document.querySelector('.options');
+        const optionItems = document.querySelectorAll('.option');
+        searchInput.addEventListener('click', () => {
+          options.style.display = 'block';
+        });
+        optionItems.forEach(option => {
+          option.addEventListener('click', () => {
+            self.formData.userName = option.textContent
+            options.style.display = 'none';
+          });
+        });
+        searchInput.addEventListener('input', () => {
+          const searchValue = searchInput.value.toLowerCase();
+          optionItems.forEach(option => {
+            const optionText = option.textContent.toLowerCase();
+            if (optionText.includes(searchValue)) {
+              option.style.display = 'block';
+            } else {
+              option.style.display = 'none';
+            }
+          });
+          options.style.display = 'block';
+        });
+
+        document.addEventListener('click', event => {
+          if (!searchInput.contains(event.target)) {
+            options.style.display = 'none';
+          }
+        });
+      },
+      submitNotificationAllApp() {
+        var self = this
+        if (self.formDataAllApp.noiDung.trim() === '') {
+          self.checkInputNotificationAll = true
+        } else {
+          fetch('/addNotification', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(self.formDataAllApp)
+          })
+              .then(response => response.json())
+              .then(data => {
+                if (data === true) {
+                  self.GetDataAllNotification()
+                  self.formDataAllApp.noiDung = '';
+                  self.checkInputNotificationAll = false
+                }
+              })
+              .catch(error => {
+                console.error(error);
+              });
+        }
+      },
+      submitOneNotification() {
+        var self = this
+
+        if (self.formData.userName.trim() === '' || self.formData.noiDung.trim() === '') {
+          if (self.formData.userName.trim() === '' && self.formData.noiDung.trim() === '') {
+            self.checkInputNotificationOne = true
+            self.checkInputUserNameOne = true
+          } else if (self.formData.userName.trim() === '') {
+            self.checkInputNotificationOne = false
+            self.checkInputUserNameOne = true
+          } else {
+            self.checkInputNotificationOne = true
+            self.checkInputUserNameOne = false
+          }
+
+        } else {
+          fetch('/addNotificationOneUser', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(self.formData)
+          })
+              .then(response => response.json())
+              .then(data => {
+                if (data === true) {
+                  self.GetDataAllOneNotification()
+
+                  self.formData.noiDung = '';
+                  self.formData.userName = '';
+                  self.checkThongTin = true
+                  self.checkInputNotificationOne = false
+                  self.checkInputUserNameOne = false
+                } else {
+                  self.formData.userName = '';
+                  self.checkThongTin = false
+                }
+              })
+              .catch(error => {
+                console.error(error);
+              });
+        }
+      },
+      deleteAllNotification() {
+        var self = this
+        fetch('/deleteAllNotification', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(self.formDataAllApp)
+        })
+            .then(response => response.json())
+            .then(data => {
+              if (data === true) {
+                self.GetDataAllNotification()
+                self.checkInputNotificationAll = false
+              }
+              self.closeModal()
+            })
+            .catch(error => {
+              console.error(error);
+            });
+      },
+      deleteAllNotificationOne() {
+        var self = this
+        fetch('/deleteAllNotificationOne', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(self.formDataAllApp)
+        })
+            .then(response => response.json())
+            .then(data => {
+              if (data === true) {
+                self.GetDataAllOneNotification()
+                self.checkInputNotificationOne = false
+                self.checkInputUserNameOne = false
+              }
+              self.closeModalXoa()
+            })
+            .catch(error => {
+              console.error(error);
+            });
+      }
+    }
+  })
+
+  vm.GetAllDataChat();
+  vm.GetDataCart();
+  vm.GetDataAllNotification();
+  vm.GetDataNameUser();
+  vm.GetDataAllOneNotification();
+
+</script>
+</html>

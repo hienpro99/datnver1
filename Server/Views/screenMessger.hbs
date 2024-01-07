@@ -1,0 +1,526 @@
+<html lang="en">
+
+<head>
+  <title>Tin Nhắn</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+    .btn {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .mess {
+      position: relative;
+      display: inline-block;
+    }
+
+    .mess::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background-color: white;
+      transition: width 0.5s ease-in-out;
+    }
+
+    .mess:hover::after {
+      width: 100%;
+    }
+
+    .information {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      background: #eadada;
+      border-radius: 8px;
+      margin: 7px;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .informationNew {
+      align-items: center;
+      display: flex;
+      font-weight: bold;
+      flex-direction: row;
+      background: #eadada;
+      border-radius: 8px;
+      margin: 7px;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .user {
+      max-width: fit-content;
+      background: #d4d4d4;
+      padding: 7px;
+      border-radius: 8px;
+      text-align: left;
+      width: 80%;
+      margin: 8px 0;
+    }
+
+    .admin {
+      max-width: fit-content;
+      background: #4842ff;
+      padding: 7px;
+      border-radius: 8px;
+      margin-left: auto;
+      width: 80%;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .contenChat {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .name-user {
+      font-size: 25px;
+      padding: 6px;
+      font-weight: 700;
+      background: #f2eaea;
+      margin: 0 12px;
+      text-align: center
+    }
+
+
+    .box-input {
+      width: 93%;
+      border: 1px solid;
+      line-height: 30px;
+      padding: 4px;
+      border-radius: 8px;
+    }
+
+    .box-input-err {
+      width: 93%;
+      border: 2px solid red;
+      line-height: 30px;
+      padding: 4px;
+      border-radius: 8px;
+    }
+
+    .box-chat-Main {
+      width: 100%;
+      height: 100%;
+      background: white;
+    }
+
+    .box-extra-chat {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: space-between;
+    }
+
+    .box-All-Chat {
+      width: 18%;
+      border-right: 1.5px solid;
+      overflow: auto;
+      padding: 4px;
+      margin: 8px;
+    }
+
+    .box-One-Chat {
+      width: 80%
+    }
+
+    .box-Content-One-chat {
+      overflow: auto;
+      height: 80%;
+      padding: 14px 8px;
+      margin: 8px;
+      background: #f6ecec;
+      border-radius: 8px;
+    }
+
+
+    .body-Main {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+
+    .box-Main-One {
+      width: 17%;
+      height: 100%;
+      background-color: rgba(49, 46, 129, var(--tw-bg-opacity));
+      display: flex;
+      flex-direction: column;
+    }
+
+    .box-Text-Title {
+      background-color: rgba(55, 48, 163, var(--tw-bg-opacity));
+      height: 13%;
+      width: 100%;
+    }
+
+    .text-Title {
+      color: white;
+      font-size: 24px;
+      padding: 24px;
+      font-family: sans-serif;
+      font-weight: 600;
+    }
+
+    .box-Main-Two {
+      width: 84%;
+      height: 100%;
+    }
+
+    .box-Main-Extra {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .box-infomation {
+      width: 100%;
+      height: 11%;
+    }
+
+    .information-Box {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: space-between;
+      padding: 0 18px;
+      background: white;
+      align-items: center;
+    }
+
+    .information-Admin {
+      display: flex;
+      width: 8%;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .link-a:hover {
+      text-decoration: none;
+    }
+
+    .link-a {
+      color: black;
+      font-size: 16px;
+      font-family: sans-serif;
+    }
+
+    .box-order-Main {
+      width: 99%;
+      height: 85%;
+      margin: 14px 8px;
+    }
+
+    .item-click {
+      height: 87%;
+      width: 100%;
+    }
+
+    .load-Spinner {
+      padding: 20%;
+      width: 100%;
+      text-align: center;
+    }
+
+    .display_None{
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-200">
+<div id="dataALL">
+  <div class="body-Main">
+    <div class="box-Main-One">
+      <div class="box-Text-Title">
+        <div class="text-Title">Shop BipBip</div>
+      </div>
+      <div class="item-click">
+        <a href="/statistic" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
+           style="text-decoration: none ">
+          <div class="flex" style=" padding: 12px;">
+            <div>
+              <img class="w-5 h-5" src="analytics.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100 ">Thống kê</div>
+          </div>
+        </a>
+        <a href="/home" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
+           style="display: flex; text-decoration: none ">
+          <div class="flex" style=" padding: 12px;">
+            <div>
+              <img class="w-5 h-5" src="dashboard.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100 ">Đơn Hàng</div>
+          </div>
+          <span class="badge" style="color: white;font-size: 14px;">\{{donHangMoi}}</span>
+        </a>
+        <a href="/mess" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex;border-bottom-width: 1px; text-decoration: none">
+          <div class="flex" style="padding: 12px;">
+            <div>
+              <img class="w-5 h-5 " src="messages.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100 ">Tin Nhắn</div>
+          </div>
+          <span class="badge" style="color: white;font-size: 14px;">\{{tinNhanMoi}}</span>
+        </a>
+        <a href="/notifications" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
+          <div class="flex" style=" padding: 12px;">
+            <div>
+              <img class="w-5 h-5" src="notifications.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100">Thông báo</div>
+          </div>
+        </a>
+        <a href="/accountManagement" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none">
+          <div class="flex" style="padding: 12px;">
+            <div>
+              <img class="w-5 h-5 " src="iconuser.png" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100 ">Quản Lý người dùng</div>
+          </div>
+        </a>
+        <a href="/warehouse" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
+          <div class="flex" style=" padding: 12px;">
+            <div>
+              <img class="w-5 h-5" src="kho.svg" alt="">
+            </div>
+            <div class="mx-3 text-sm text-gray-100">Kho Hàng</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="box-Main-Two">
+      <div class="box-Main-Extra">
+        <div class="box-infomation">
+          <div class="information-Box">
+            <div class="information-Admin">
+              <img src="person.png" class="w-10 h-10" alt="">
+              <span>Admin</span>
+            </div>
+            <div>
+              <a class="link-a" href="/login">Đăng xuất</a>
+            </div>
+          </div>
+        </div>
+        <div class="box-order-Main">
+
+          <div class="load-Spinner" :class="checkStatus ? ' ' : 'display_None' ">
+            <div class="spinner-border text-primary"></div>
+          </div>
+
+          <div id="hienThidata" :class="checkStatus ? 'display_None' : ' ' ">
+            <div class="box-chat-Main">
+              <div class="box-extra-chat">
+                <div class="box-All-Chat">
+                  <div v-for="item in dataTitleChat" :class="{'informationNew':item.status,'information':!item.status}"
+                       @click="OpenChatUser(item.user)">
+                    \{{item.fullName}}
+                  </div>
+                </div>
+                <div id="checkData" class="box-One-Chat" v-if="dataContentChat.length > 0">
+                  <div class="name-user">
+                    \{{nameUser}}
+                  </div>
+                  <div id="listConten"  class="box-Content-One-chat">
+                    <div class="contenChat" v-for="item in dataContentChat"
+                         :class="{'admin': item.beLong === 'admin', 'user': item.beLong !== 'admin'}">
+                      \{{item.conTenMain}}
+                    </div>
+                  </div>
+                  <form @submit.prevent="submitContentChat" class="mb-3" style="margin: 0 14px;">
+                    <div class="input-group" style="justify-content: space-around;">
+                      <label :class="checkInput ?'box-input-err': 'box-input'">
+                        <input style="width: 100%;outline: unset !important;" type="text"
+                               v-model="formData.conTenMain">
+                      </label>
+                      <div style="margin-left: 8px;">
+                        <button class="btn btn-primary" type="submit">Gửi</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script>
+  var vm = new Vue({
+    el: "#dataALL",
+    data: {
+      idUser: '',
+      nameUser: '',
+      dataTitleChat: {},
+      dataContentChat: {},
+      checkClick: false,
+      formData: {
+        user: '',
+        conTenMain: '',
+        beLong: "admin",
+        status: false
+      },
+      tinNhanMoi: 0,
+      donHangMoi: 0,
+      checkInput: false,
+      checkStatus:true
+    },
+    mounted() {
+      const socket = io();
+      const self = this;
+      socket.on('server-send', () => {
+        self.GetAllDataChat();
+        self.GetDataCart();
+        if (self.idUser.length > 0) {
+          self.OpenChatUser(self.idUser);
+        }
+      });
+
+      this.socket = socket;
+
+    },
+    beforeDestroy() {
+      const socket = io();
+      if (socket) {
+        this.socket.disconnect();
+      }
+    },
+
+    methods: {
+
+      GetAllDataChat: function () {
+        console.log("Start")
+        var self = this;
+        fetch('/chatAllShop', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+            .then(response => response.json())
+            .then(data => {
+              const sortedData = data.sort((a, b) => {
+                if (a.status === b.status) {
+                  return 0;
+                }
+                return a.status ? -1 : 1;
+              });
+              self.dataTitleChat = sortedData;
+              self.tinNhanMoi = sortedData.filter(item => item.status === true).length
+              self.checkStatus = false
+            })
+            .catch(error => {
+              console.error(error);
+            });
+      },
+      OpenChatUser: function (id) {
+        var self = this;
+        if (self.checkClick) {
+          return
+        }
+        self.checkClick = true;
+        fetch('/chatShop', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({user: id})
+        })
+            .then(response => response.json())
+            .then(data => {
+              self.idUser = id
+              self.nameUser = data.fullName
+              self.dataContentChat = data.content
+              self.checkClick = false;
+              self.checkInput = false
+              setTimeout(self.scrollViewEnd,100)
+            })
+            .catch(error => {
+              console.error(error);
+            });
+      },
+
+      scrollViewEnd(){
+        var element = document.querySelector('.box-Content-One-chat');
+        element.scrollTop = element.scrollHeight;
+      },
+      GetDataCart: function () {
+        var self = this;
+        fetch('/loadDataChoXacNhan', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+            .then(response => response.json())
+            .then(data => {
+              self.donHangMoi = data.length
+            })
+            .catch(error => {
+              console.error(error);
+            });
+      },
+      submitContentChat() {
+        var self = this;
+        const socket = io();
+        self.formData.user = self.idUser;
+        if (self.formData.conTenMain.trim() === '') {
+          self.checkInput = true
+        } else {
+          fetch('/home/chatShop', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(self.formData)
+          })
+              .then(response => response.json())
+              .then(data => {
+                if (data === true) {
+                  socket.emit('client-send');
+                  self.formData.conTenMain = '';
+                  self.checkInput = false
+                }
+              })
+              .catch(error => {
+                console.error(error);
+              });
+
+          fetch('/home/notificationChatShop', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(self.formData)
+          })
+        }
+      }
+    }
+  })
+  vm.GetAllDataChat();
+  vm.GetDataCart();
+</script>
+</html>

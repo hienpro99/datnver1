@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lí người dùng</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .search-container,
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            padding: 8px;
+            width: 60%;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+
+        .filter-label {
+            margin-right: 10px;
+        }
+
+        .table-container {
+            width: 100%;
+        }
+
+        .table {
+            width: 100%;
+            max-width: 2500px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            table-layout: fixed;
+        }
+
+        th,
+        td {
+            text-align: left;
+            border: 1px solid #ddd;
+            padding: 8px;
+            font-size: 12px;
+            word-wrap: break-word;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f0f8ff;
+        }
+
+        tbody tr:hover {
+            background-color: #add8e6;
+        }
+
+        .table td .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ban-button,
+        .unban-button,
+        .btn-info {
+            width: 80px;
+            padding: 6px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .ban-button {
+            background-color: #ff0000;
+        }
+
+        .unban-button {
+            background-color: #73ff00;
+        }
+
+        .btn-info {
+            background-color: #007bff;
+        }
+
+        .modal-content {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+
+        #modalAvatarImage {
+            border-radius: 10px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            margin-bottom: 10px;
+        }
+
+
+        .modal-footer button {
+            cursor: pointer;
+        }
+
+        .filter-container select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+
+        .bg-indigo-900 {
+            position: fixed;
+            height: 100%;
+            width: 16%;
+        }
+
+
+        .flex-1 {
+            margin-left: 16%;
+        }
+
+        .navbar-placeholder {
+            height: 56px;
+        }
+
+        .sticky-header {
+            position: fixed;
+            width: 100%;
+            background-color: #fff;
+            z-index: 1000;
+        }
+
+        .table-container {
+            overflow-y: auto;
+            max-height: 77vh;
+        }
+
+        .table {
+            margin-top: 0;
+        }
+
+        .modal-title {
+            font-weight: bold;
+        }
+
+            {
+                {
+                !-- bê nguyên từ màn warehouse --
+            }
+        }
+
+        body {
+            margin: 7px auto auto;
+        }
+
+        .card-header {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .btn {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
+
+        .table .table-actions a {
+            margin-right: 5px;
+        }
+
+        .mess {
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .mess::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 1px;
+            background-color: white;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .mess:hover::after {
+            width: 100%;
+        }
+
+        .search-container {
+            float: left;
+            justify-content: space-between;
+            margin-left: 15px;
+            line-height: 20px;
+        }
+
+        .search-input {
+            padding: 2px 5px 2px 5px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+
+            {
+                {
+                !-- end bê nguyên từ màn warehouse --
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-200">
+    <div class="flex" id="dataALL" style="height: 100%;">
+        <div class="bg-indigo-900 w-1/6 ">
+            <div class=" bg-indigo-800">
+                <div class=" text-xl text-gray-200 uppercase font-bold" style="padding: 33px;">Shop BipBip</div>
+            </div>
+            <a href="/statistic" class=" cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none ">
+                <div class="flex" style=" padding: 12px;">
+                    <div>
+                        <img class="w-5 h-5" src="../analytics.png" alt="">
+                    </div>
+                    <div class="mx-3 text-sm text-gray-100 ">Thống kê</div>
+                </div>
+            </a>
+            <a href="/home" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
+                style="display: flex; text-decoration: none ">
+                <div class="flex" style=" padding: 12px;">
+                    <div>
+                        <img class="w-5 h-5" src="dashboard.png" alt="">
+                    </div>
+                    <div class="mx-3 text-sm text-gray-100 ">Đơn Hàng</div>
+                </div>
+                <span class="badge" style="color: white;font-size: 14px;">\{{donHangMoi}}</span>
+            </a>
+            <a href="/mess" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none">
+                <div class="flex" style="padding: 12px;">
+                    <div>
+                        <img class="w-5 h-5 " src="messages.png" alt="">
+                    </div>
+                    <div class="mx-3 text-sm text-gray-100 ">Tin Nhắn</div>
+                </div>
+                <span class="badge" style="color: white;font-size: 14px;">\{{tinNhanMoi}}</span>
+            </a>
+            <a href="/notifications" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
+                <div class="flex" style=" padding: 12px;">
+                    <div>
+                        <img class="w-5 h-5" src="../notifications.png" alt="">
+                    </div>
+                    <div class="mx-3 text-sm text-gray-100">Thông báo</div>
+                </div>
+            </a>
+            <a href="/customer" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+                style="border-bottom-width: 1px;  text-decoration: none">
+                <div class="flex" style="padding: 12px;">
+                    <div>
+                        <img class="w-5 h-5 " src="../iconuser.png" alt="">
+                    </div>
+                    <div class="mx-3 text-sm text-gray-100 ">Quản Lý người dùng</div>
+                </div>
+            </a>
+            <a href="/warehouse" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
+                <div class="flex" style=" padding: 12px;">
+                    <div>
+                        <img class="w-5 h-5" src="../kho.svg" alt="">
+                    </div>
+                    <div class="mx-3 text-sm text-gray-100">Kho Hàng</div>
+                </div>
+            </a>
+        </div>
+        <div class="navbar-placeholder"></div>
+        <div class="flex-1">
+            <div>
+                <div class="bg-white px-2 py-2.5 h-18 flex">
+                    <div class="left md:w-3/4 sm:w-1/3 flex p-3">
+                        <img src="person.png" class="w-10 h-10" alt="">
+                        <span class="block p-2">Admin</span>
+                    </div>
+                    <div class="right md:w-1/4 sm:w-2/3 flex  justify-content-end ">
+                        <a href="/login"
+                            style=" text-decoration: none; color: black; line-height: 58px; margin-right: 24px; ">Đăng
+                            xuất</a>
+                    </div>
+                </div>
+                {{!-- <h2>Danh sách khách hàng</h2> --}}
+                <div class="filter-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Tìm kiếm...">
+                    <select id="statusFilter">
+                        <option value="allUsers" selected>Tất cả</option>
+                        <option value="bannedUsers">Đã chặn</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">STT</th>
+                                <th scope="col" colspan="2">ID</th>
+                                {{!-- <th scope="col">Ảnh</th> --}}
+                                <th scope="col" colspan="2">Tên</th>
+                                {{!-- <th scope="col">Giới Tính</th>
+                                <th scope="col" colspan="2">Ngày sinh</th>
+                                <th scope="col" colspan="3">Email</th>
+                                <th scope="col" colspan="2">SDT</th>
+                                <th scope="col" colspan="2">Địa chỉ</th> --}}
+                                {{!-- <th scope="col">Trạng Thái</th> --}}
+                                <th scope="col" colspan="3">Lý do chặn</th>
+                                <th scope="col" colspan="2">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each data}}
+                            <tr>
+                                <td>{{@index}}</td>
+                                <td style="color: #ff0000; font-size: 8px;" colspan="2">{{_id}}</td>
+                                {{!-- <td><img src="{{profile.avatar}}" alt="Avatar" width="70%"></td> --}}
+                                <td colspan="2">{{profile.fullname}}</td>
+                                {{!-- <td>{{profile.gender}}</td>
+                                <td colspan="2">{{profile.birthday}}</td>
+                                <td colspan="3" style=" font-size: 10px;">{{profile.username}}</td>
+                                <td colspan="2">{{address.phone}}</td>
+                                <td colspan="2">{{address.address}}</td> --}}
+                                {{!-- <td>{{profile.status}}</td> --}}
+                                <td style="color: #e813cf; font-weight: bold;" colspan="3">{{block_reason}}</td>
+                                <td class="action-buttons" colspan="2" style="margin-left: 30px;">
+                                    {{#if profile.status}}
+                                    <button class="unban-button" data-toggle="modal"
+                                        data-target="#unbanConfirmationModal" data-user-id="{{_id}}"
+                                        onclick="setUserId('{{_id}}')">Mở chặn</button>
+                                    {{else}}
+                                    <button class="ban-button" data-toggle="modal" data-target="#blockUserModal"
+                                        data-user-id="{{_id}}" onclick="setUserId('{{_id}}')">Chặn</button>
+                                    {{/if}}
+
+                                    <button class="btn btn-info" onclick="showUserDetails('{{_id}}')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+
+
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                <form action="/block/" method="POST" id="blockForm">
+                    <div class="modal" id="blockUserModal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Chặn người dùng</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="UserId">ID: <span id="modalUserId"></span></label>
+                                    <br>
+                                    <label for="blockReason">Nhập nội dung chặn:</label>
+                                    <input type="text" class="form-control" id="blockReason" name="blockReason">
+                                    <input type="hidden" id="modalUserIdInput" name="userId">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="submitBlockForm()">Chặn</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal" id="unbanConfirmationModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Bỏ chặn người dùng</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Bạn có chắc chắn muốn bỏ chặn người dùng không?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                <button type="button" class="btn btn-primary" onclick="unbanUser()">Bỏ chặn</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="userDetailsModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Thông tin chi tiết người dùng</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img id="modalAvatarImage" src="" alt="Avatar"
+                                            style="width: 100%; height: auto; display: block; margin: 0 auto;margin-bottom: 10px;">
+                                        <p style="font-weight: bold;">Số điện thoại: <span id="modalPhone"
+                                                style="font-weight: initial;"></span></p>
+                                        <p style="font-weight: bold;">Địa chỉ: <span id="modalAddress"
+                                                style="font-weight: initial;"></span></p>
+                                        <p style="font-weight: bold;">..........</p>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p style="font-weight: bold;">Họ và tên: <span id="modalFullname"
+                                                style="font-weight: initial;"></span></p>
+                                        <p style="font-weight: bold;">Giới tính: <span id="modalGender"
+                                                style="font-weight: initial;"></span></p>
+                                        <p style="font-weight: bold;">Ngày sinh: <span id="modalBirthday"
+                                                style="font-weight: initial;"></span></p>
+                                        <p style="font-weight: bold;">Email: <span id="modalUsername"
+                                                style="font-weight: initial;"></span></p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        <script>
+            function showUserDetails(userId) {
+                fetch(`/customer/${userId}`)
+                    .then(response => response.json())
+                    .then(userData => {
+                        populateUserDetailsModal(userData);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        $('#userDetailsModal').modal('show');
+                    });
+            }
+            function populateUserDetailsModal(userData) {
+                document.getElementById('modalUserId').innerText = userData._id || 'Không có dữ liệu';
+                document.getElementById('modalFullname').innerText = userData.profile.fullname || 'Không có dữ liệu';
+                document.getElementById('modalGender').innerText = userData.profile.gender || 'Không có dữ liệu';
+                document.getElementById('modalBirthday').innerText = userData.profile.birthday || 'Không có dữ liệu';
+                document.getElementById('modalUsername').innerText = userData.profile.username || 'Không có dữ liệu';
+                document.getElementById('modalPhone').innerText = userData.address.phone || 'Không có dữ liệu';
+                document.getElementById('modalAddress').innerText = userData.address.address || 'Không có dữ liệu';
+
+                var avatarImageElement = document.getElementById('modalAvatarImage');
+                if (userData.profile && userData.profile.avatar) {
+                    avatarImageElement.setAttribute('src', userData.profile.avatar);
+                    avatarImageElement.setAttribute('alt', 'Avatar');
+                } else {
+                    avatarImageElement.setAttribute('src', 'https://bazanxanh.com/wp-content/themes/travel/images/no-image.jpg');
+                    avatarImageElement.setAttribute('alt', 'Default Avatar');
+                }
+
+
+                if (userData.profile.birthday) {
+                    document.getElementById('modalBirthday').innerText = userData.profile.birthday;
+                } else {
+                    document.getElementById('modalBirthday').innerText = 'Không có dữ liệu';
+                }
+                if (userData.profile.gender) {
+                    document.getElementById('modalGender').innerText = userData.profile.gender;
+                } else {
+                    document.getElementById('modalGender').innerText = 'Không có dữ liệu';
+                }
+                if (userData.profile.fullname) {
+                    document.getElementById('modalFullname').innerText = userData.profile.fullname;
+                } else {
+                    document.getElementById('modalFullname').innerText = 'Không có dữ liệu';
+                }
+
+                if (userData.profile.username) {
+                    document.getElementById('modalUsername').innerText = userData.profile.username;
+                } else {
+                    document.getElementById('modalUsername').innerText = 'Không có dữ liệu';
+                }
+
+                if (userData.address.phone) {
+                    document.getElementById('modalPhone').innerText = userData.address.phone;
+                } else {
+                    document.getElementById('modalPhone').innerText = 'Không có dữ liệu';
+                }
+
+                if (userData.address && userData.address.address) {
+                    document.getElementById('modalAddress').innerText = userData.address.address;
+                } else {
+                    document.getElementById('modalAddress').innerText = 'Không có dữ liệu';
+                }
+                $('#userDetailsModal').modal('show');
+            }
+        </script>
+
+        <script>
+            const vm = new Vue({
+                el: '#dataALL',
+                data: {
+                    tinNhanMoi: 0,
+                    donHangMoi: 0,
+                },
+                methods: {
+                    GetDataCart: function () {
+                        return new Promise((resolve, reject) => {
+                            fetch('/loadDataChoXacNhan', {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    resolve(data.length);
+                                })
+                                .catch(error => {
+                                    reject(error);
+                                });
+                        });
+                    },
+                    GetAllDataChat: function () {
+                        return new Promise((resolve, reject) => {
+                            fetch('/chatAllShop', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    const sortedData = data.sort((a, b) => {
+                                        if (a.status === b.status) {
+                                            return 0;
+                                        }
+                                        return a.status ? -1 : 1;
+                                    });
+                                    resolve(sortedData.filter(item => item.status === true).length);
+                                })
+                                .catch(error => {
+                                    reject(error);
+                                });
+                        });
+                    },
+                },
+                mounted() {
+                    this.GetDataCart()
+                        .then(count => {
+                            this.donHangMoi = count;
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+
+                    this.GetAllDataChat()
+                        .then(count => {
+                            this.tinNhanMoi = count;
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                },
+            });
+
+            function setUserId(userId) {
+                document.getElementById('modalUserId').innerText = userId;
+                document.getElementById('modalUserIdInput').value = userId;
+            }
+
+            function submitBlockForm() {
+                var blockReason = document.getElementById('blockReason').value;
+                var userId = document.getElementById('modalUserId').innerText;
+                document.getElementById('modalUserIdInput').value = userId;
+                document.getElementById('blockForm').submit();
+            }
+
+            document.getElementById('searchInput').addEventListener('input', function () {
+                var filter = this.value.toLowerCase();
+                var rows = document.querySelectorAll('tbody tr');
+
+                rows.forEach(function (row) {
+                    var text = row.innerText.toLowerCase();
+                    row.style.display = text.includes(filter) ? '' : 'none';
+                });
+            });
+
+            var searchInput = document.getElementById('searchInput');
+
+            var statusFilter = document.getElementById('statusFilter');
+
+            function filterRows() {
+                var filter = searchInput.value.toLowerCase();
+                var selectedStatus = statusFilter.value;
+
+                var rows = document.querySelectorAll('tbody tr');
+
+                rows.forEach(function (row) {
+                    var text = row.innerText.toLowerCase();
+                    var status = row.querySelector('.action-buttons button').innerText.toLowerCase();
+                    var shouldDisplay = text.includes(filter) && (
+                        (selectedStatus === 'allUsers') ||
+                        (selectedStatus === 'bannedUsers' && status.includes('mở chặn')) ||
+                        (selectedStatus === 'unbannedUsers' && status.includes('chặn'))
+                    );
+
+                    row.style.display = shouldDisplay ? '' : 'none';
+                });
+            }
+
+            statusFilter.addEventListener('change', filterRows);
+
+            searchInput.addEventListener('input', filterRows);
+
+            function unbanUser() {
+                var userId = document.getElementById('modalUserId').innerText;
+
+                fetch('/unblock', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userId: userId,
+                    }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message.includes('bỏ chặn')) {
+                            window.location.reload();
+                        } else {
+                            alert('Có lỗi xảy ra khi bỏ chặn người dùng.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Có lỗi xảy ra khi gửi yêu cầu.');
+                    });
+            }
+        </script>
+
+
+</body>
+
+</html>
