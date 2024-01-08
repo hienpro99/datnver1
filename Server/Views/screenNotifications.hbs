@@ -12,6 +12,7 @@
     body {
       font-family: 'Arial', sans-serif;
     }
+
     .mess {
       position: relative;
       display: inline-block;
@@ -271,168 +272,177 @@
 </head>
 
 <body class="bg-gray-200">
-<div id="dataALL">
-  <div class="body-Main">
-    <div class="box-Main-One">
-      <div class="box-Text-Title">
-        <div class="text-Title">Shop BipBip</div>
-      </div>
-      <div class="item-click">
-        <a href="/statistic" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
-           style="text-decoration: none ">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="analytics.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Thống kê</div>
-          </div>
-        </a>
-        <a href="/home" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
-           style="display: flex; text-decoration: none ">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="dashboard.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Đơn Hàng</div>
-          </div>
-          <span class="badge" style="color: white;font-size: 14px;">\{{donHangMoi}}</span>
-        </a>
-        <a href="/mess" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none">
-          <div class="flex" style="padding: 12px;">
-            <div>
-              <img class="w-5 h-5 " src="messages.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Tin Nhắn</div>
-          </div>
-          <span class="badge" style="color: white;font-size: 14px;">\{{tinNhanMoi}}</span>
-        </a>
-        <a href="/notifications" class="cursor-pointer mess ml-3 mt-3 w-10/12"
-           style="border-bottom-width: 1px;text-decoration: none">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="notifications.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100">Thông báo</div>
-          </div>
-        </a>
-        <a href="/accountManagement" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none">
-          <div class="flex" style="padding: 12px;">
-            <div>
-              <img class="w-5 h-5 " src="iconuser.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Quản Lý người dùng</div>
-          </div>
-        </a>
-        <a href="/warehouse" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="kho.svg" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100">Kho Hàng</div>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="box-Main-Two">
-      <div class="box-Main-Extra">
-        <div class="box-infomation">
-          <div class="information">
-            <div class="information-Admin">
-              <img src="person.png" class="w-10 h-10" alt="">
-              <span>Admin</span>
-            </div>
-            <div>
-              <a class="link-a" href="/login">Đăng xuất</a>
-            </div>
-          </div>
+  <div id="dataALL">
+    <div class="body-Main">
+      <div class="box-Main-One">
+        <div class="box-Text-Title">
+          <div class="text-Title">Shop BipBip</div>
         </div>
-        <!--Top navbar-->
-        <div class="box-order-Main">
-
-          <div :class="checkStatus ? ' ' : 'display_None' " class="load-Spinner">
-            <div class="spinner-border text-primary"></div>
+        <div class="item-click">
+          <a href="/statistic" class=" cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none ">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="analytics.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Thống kê</div>
+            </div>
+          </a>
+          <a href="/home" class=" cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none ">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="dashboard.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Đơn Hàng</div>
+            </div>
+            <span class="badge" style="color: white;font-size: 14px;">\{{donHangMoi}}</span>
+          </a>
+          <a href="/mess" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none">
+            <div class="flex" style="padding: 12px;">
+              <div>
+                <img class="w-5 h-5 " src="messages.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Tin Nhắn</div>
+            </div>
+            <span class="badge" style="color: white;font-size: 14px;">\{{tinNhanMoi}}</span>
+          </a>
+          <a href="/notifications" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+            style="border-bottom-width: 1px;text-decoration: none">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="notifications.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100">Thông báo</div>
+            </div>
+          </a>
+          <a href="/accountManagement" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+            style="display: flex; text-decoration: none">
+            <div class="flex" style="padding: 12px;">
+              <div>
+                <img class="w-5 h-5 " src="iconuser.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Quản Lý người dùng</div>
+            </div>
+          </a>
+          <a href="/customer" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+            style="display: flex; text-decoration: none">
+            <div class="flex" style="padding: 12px;">
+              <div>
+                <img class="w-5 h-5 " src="nhansu.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Danh Sách Nhân Sự</div>
+            </div>
+          </a>
+          <a href="/warehouse" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="kho.svg" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100">Kho Hàng</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="box-Main-Two">
+        <div class="box-Main-Extra">
+          <div class="box-infomation">
+            <div class="information">
+              <div class="information-Admin">
+                <img src="person.png" class="w-10 h-10" alt="">
+                <span>Admin</span>
+              </div>
+              <div>
+                <a class="link-a" href="/logout">Đăng xuất</a>
+              </div>
+            </div>
           </div>
+          <!--Top navbar-->
+          <div class="box-order-Main">
 
-          <div id="hienThidata" :class="checkStatus ? 'display_None' : ' ' ">
-            <div class="box-Main">
-              <div class="box-Main-Notification">
-                <div class="width-tab">
-                  <div class="text-title-Notification">
-                    Thông báo tất cả
-                  </div>
-                  <div class="form-submit">
-                    <form @submit.prevent="submitNotificationAllApp">
-                      <div>
-                    <textarea rows="4" cols="50" :class="checkInputNotificationAll ?  'input-err' : 'text-inputform' "
-                              type="text"
-                              v-model="formDataAllApp.noiDung"></textarea>
-                        <!--                  <div v-if="checkInputNotificationAll === true " class="text-err">Vui lòng điền thông tin</div>-->
-                        <div class="css-buttom">
-                          <button class="btn btn-primary" style="width: 100%;" type="submit">Gửi</button>
-                        </div>
-                      </div>
-                    </form>
+            <div :class="checkStatus ? ' ' : 'display_None' " class="load-Spinner">
+              <div class="spinner-border text-primary"></div>
+            </div>
 
-                  </div>
-
-                  <div v-if="dataNotificationApp.length !== 0" class="box-content-Notification">
-                    <div class="box-delete">
-                      <div class="text-delete" @click="openModal">Xóa tất cả</div>
+            <div id="hienThidata" :class="checkStatus ? 'display_None' : ' ' ">
+              <div class="box-Main">
+                <div class="box-Main-Notification">
+                  <div class="width-tab">
+                    <div class="text-title-Notification">
+                      Thông báo tất cả
                     </div>
-                    <div class="box-notification">
-                      <div style=" padding: 8px; background: #60eab1; border-radius: 8px; margin-bottom: 8px"
-                           v-for="item in dataNotificationApp">
-                        <div>\{{item.noiDung}}</div>
-                        <div style="text-align: end;font-weight: 600;margin-top: 8px;">\{{formatDate(item.date)}}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="width-tab">
-                  <div class="text-title-Notification">
-                    Thông báo cho 1 người dùng
-                  </div>
-                  <div class="form-submit">
-                    <form @submit.prevent="submitOneNotification">
-                      <div>
-                    <textarea rows="4" cols="50" :class="checkInputNotificationOne ?  'input-err' : 'text-inputform' "
-                              type="text"
-                              v-model="formData.noiDung"></textarea>
-                        <div class="css-buttom">
-                          <div class="dropdown">
-                            <input type="text" :class="checkInputUserNameOne ?'search-err': 'search'" id="searchInput"
-                                   placeholder="Tài khoản" autocomplete="off"
-                                   v-model="formData.userName"
-                            >
-                            <div class="options">
-                              <div class="option" v-for="item in nameUserAll">\{{item}}</div>
-                            </div>
+                    <div class="form-submit">
+                      <form @submit.prevent="submitNotificationAllApp">
+                        <div>
+                          <textarea rows="4" cols="50"
+                            :class="checkInputNotificationAll ?  'input-err' : 'text-inputform' " type="text"
+                            v-model="formDataAllApp.noiDung"></textarea>
+                          <!--                  <div v-if="checkInputNotificationAll === true " class="text-err">Vui lòng điền thông tin</div>-->
+                          <div class="css-buttom">
+                            <button class="btn btn-primary" style="width: 100%;" type="submit">Gửi</button>
                           </div>
-
-
-                          <button class="btn btn-primary" type="submit">Gửi</button>
-
                         </div>
-                        <div :class="{'displayNone':checkThongTin}"
-                             style="color: red;font-weight: 700;font-family: sans-serif">
-                          Tài khoản không đúng vui lòng nhập lại
+                      </form>
+
+                    </div>
+
+                    <div v-if="dataNotificationApp.length !== 0" class="box-content-Notification">
+                      <div class="box-delete">
+                        <div class="text-delete" @click="openModal">Xóa tất cả</div>
+                      </div>
+                      <div class="box-notification">
+                        <div style=" padding: 8px; background: #60eab1; border-radius: 8px; margin-bottom: 8px"
+                          v-for="item in dataNotificationApp">
+                          <div>\{{item.noiDung}}</div>
+                          <div style="text-align: end;font-weight: 600;margin-top: 8px;">\{{formatDate(item.date)}}
+                          </div>
                         </div>
                       </div>
-                    </form>
-
-                  </div>
-                  <div v-if="dataNotificationOneApp.length !== 0" class="box-content-Notification">
-                    <div class="box-delete">
-                      <div class="text-delete" @click="openModalXoa">Xóa tất cả</div>
                     </div>
-                    <div class="box-notification">
-                      <div style="padding: 8px; background: #60eab1; border-radius: 8px;margin-bottom: 8px"
-                           v-for="item in dataNotificationOneApp">
-                        <div style="font-weight: 600;margin-bottom: 8px;">
-                          Tài khoản: \{{item.userName}}
+                  </div>
+                  <div class="width-tab">
+                    <div class="text-title-Notification">
+                      Thông báo cho 1 người dùng
+                    </div>
+                    <div class="form-submit">
+                      <form @submit.prevent="submitOneNotification">
+                        <div>
+                          <textarea rows="4" cols="50"
+                            :class="checkInputNotificationOne ?  'input-err' : 'text-inputform' " type="text"
+                            v-model="formData.noiDung"></textarea>
+                          <div class="css-buttom">
+                            <div class="dropdown">
+                              <input type="text" :class="checkInputUserNameOne ?'search-err': 'search'" id="searchInput"
+                                placeholder="Tài khoản" autocomplete="off" v-model="formData.userName">
+                              <div class="options">
+                                <div class="option" v-for="item in nameUserAll">\{{item}}</div>
+                              </div>
+                            </div>
+
+
+                            <button class="btn btn-primary" type="submit">Gửi</button>
+
+                          </div>
+                          <div :class="{'displayNone':checkThongTin}"
+                            style="color: red;font-weight: 700;font-family: sans-serif">
+                            Tài khoản không đúng vui lòng nhập lại
+                          </div>
                         </div>
-                        <div>\{{item.noiDung}}</div>
-                        <div style="text-align: end;font-weight: 600;margin-top: 8px;">\{{formatDate(item.date)}}</div>
+                      </form>
+
+                    </div>
+                    <div v-if="dataNotificationOneApp.length !== 0" class="box-content-Notification">
+                      <div class="box-delete">
+                        <div class="text-delete" @click="openModalXoa">Xóa tất cả</div>
+                      </div>
+                      <div class="box-notification">
+                        <div style="padding: 8px; background: #60eab1; border-radius: 8px;margin-bottom: 8px"
+                          v-for="item in dataNotificationOneApp">
+                          <div style="font-weight: 600;margin-bottom: 8px;">
+                            Tài khoản: \{{item.userName}}
+                          </div>
+                          <div>\{{item.noiDung}}</div>
+                          <div style="text-align: end;font-weight: 600;margin-top: 8px;">\{{formatDate(item.date)}}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -443,52 +453,49 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade" id="xacNhan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa toàn bộ thông báo không ?</h5>
-          <button type="button" class="close" @click="closeModal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <button type="button" class="btn btn-secondary"
-                    data-dismiss="modal"> Thoát
+    <div class="modal fade" id="xacNhan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa toàn bộ thông báo không ?</h5>
+            <button type="button" class="close" @click="closeModal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
             </button>
-            <button @click="deleteAllNotification" type="button" class="btn btn-danger">Xác nhận</button>
-          </form>
+          </div>
+          <div class="modal-body">
+            <form>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"> Thoát
+              </button>
+              <button @click="deleteAllNotification" type="button" class="btn btn-danger">Xác nhận</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade" id="xacNhanXoa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa toàn bộ thông báo cho người dùng không
-            ?</h5>
-          <button type="button" class="close" @click="closeModalXoa" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <button type="button" class="btn btn-secondary"
-                    data-dismiss="modal"> Thoát
+    <div class="modal fade" id="xacNhanXoa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc muốn xóa toàn bộ thông báo cho người dùng không
+              ?</h5>
+            <button type="button" class="close" @click="closeModalXoa" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
             </button>
-            <button @click="deleteAllNotificationOne" type="button" class="btn btn-danger">Xác nhận</button>
-          </form>
+          </div>
+          <div class="modal-body">
+            <form>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"> Thoát
+              </button>
+              <button @click="deleteAllNotificationOne" type="button" class="btn btn-danger">Xác nhận</button>
+            </form>
 
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </body>
 
 <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
@@ -560,7 +567,7 @@
         const year = date.getFullYear();
 
         const formattedDate = `${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`;
-        const formattedTime = date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+        const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
         return `${formattedDate} - ${formattedTime}`;
       },
@@ -572,20 +579,20 @@
             'Content-Type': 'application/json'
           }
         })
-            .then(response => response.json())
-            .then(data => {
-              const sortedData = data.sort((a, b) => {
-                if (a.status === b.status) {
-                  return 0;
-                }
-                return a.status ? -1 : 1;
-              });
-              self.tinNhanMoi = sortedData.filter(item => item.status === true).length
-              self.checkStatus = false
-            })
-            .catch(error => {
-              console.error(error);
+          .then(response => response.json())
+          .then(data => {
+            const sortedData = data.sort((a, b) => {
+              if (a.status === b.status) {
+                return 0;
+              }
+              return a.status ? -1 : 1;
             });
+            self.tinNhanMoi = sortedData.filter(item => item.status === true).length
+            self.checkStatus = false
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       GetDataCart: function () {
         var self = this;
@@ -595,13 +602,13 @@
             'Content-Type': 'application/json'
           },
         })
-            .then(response => response.json())
-            .then(data => {
-              self.donHangMoi = data.length
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            self.donHangMoi = data.length
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       GetDataAllNotification: function () {
         var self = this;
@@ -611,13 +618,13 @@
             'Content-Type': 'application/json'
           },
         })
-            .then(response => response.json())
-            .then(data => {
-              self.dataNotificationApp = data
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            self.dataNotificationApp = data
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
 
       GetDataAllOneNotification: function () {
@@ -628,14 +635,14 @@
             'Content-Type': 'application/json'
           },
         })
-            .then(response => response.json())
-            .then(data => {
-              self.dataNotificationOneApp = data
-              console.log(self.dataNotificationOneApp)
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            self.dataNotificationOneApp = data
+            console.log(self.dataNotificationOneApp)
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       GetDataNameUser: function () {
         const self = this;
@@ -645,16 +652,16 @@
             'Content-Type': 'application/json'
           },
         })
-            .then(response => response.json())
-            .then(data => {
-              self.nameUserAll = data;
-              setTimeout(function () {
-                self.selectName();
-              }, 1000);
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            self.nameUserAll = data;
+            setTimeout(function () {
+              self.selectName();
+            }, 1000);
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       selectName: function () {
         var self = this
@@ -701,17 +708,17 @@
             },
             body: JSON.stringify(self.formDataAllApp)
           })
-              .then(response => response.json())
-              .then(data => {
-                if (data === true) {
-                  self.GetDataAllNotification()
-                  self.formDataAllApp.noiDung = '';
-                  self.checkInputNotificationAll = false
-                }
-              })
-              .catch(error => {
-                console.error(error);
-              });
+            .then(response => response.json())
+            .then(data => {
+              if (data === true) {
+                self.GetDataAllNotification()
+                self.formDataAllApp.noiDung = '';
+                self.checkInputNotificationAll = false
+              }
+            })
+            .catch(error => {
+              console.error(error);
+            });
         }
       },
       submitOneNotification() {
@@ -737,24 +744,24 @@
             },
             body: JSON.stringify(self.formData)
           })
-              .then(response => response.json())
-              .then(data => {
-                if (data === true) {
-                  self.GetDataAllOneNotification()
+            .then(response => response.json())
+            .then(data => {
+              if (data === true) {
+                self.GetDataAllOneNotification()
 
-                  self.formData.noiDung = '';
-                  self.formData.userName = '';
-                  self.checkThongTin = true
-                  self.checkInputNotificationOne = false
-                  self.checkInputUserNameOne = false
-                } else {
-                  self.formData.userName = '';
-                  self.checkThongTin = false
-                }
-              })
-              .catch(error => {
-                console.error(error);
-              });
+                self.formData.noiDung = '';
+                self.formData.userName = '';
+                self.checkThongTin = true
+                self.checkInputNotificationOne = false
+                self.checkInputUserNameOne = false
+              } else {
+                self.formData.userName = '';
+                self.checkThongTin = false
+              }
+            })
+            .catch(error => {
+              console.error(error);
+            });
         }
       },
       deleteAllNotification() {
@@ -766,17 +773,17 @@
           },
           body: JSON.stringify(self.formDataAllApp)
         })
-            .then(response => response.json())
-            .then(data => {
-              if (data === true) {
-                self.GetDataAllNotification()
-                self.checkInputNotificationAll = false
-              }
-              self.closeModal()
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            if (data === true) {
+              self.GetDataAllNotification()
+              self.checkInputNotificationAll = false
+            }
+            self.closeModal()
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       deleteAllNotificationOne() {
         var self = this
@@ -787,18 +794,18 @@
           },
           body: JSON.stringify(self.formDataAllApp)
         })
-            .then(response => response.json())
-            .then(data => {
-              if (data === true) {
-                self.GetDataAllOneNotification()
-                self.checkInputNotificationOne = false
-                self.checkInputUserNameOne = false
-              }
-              self.closeModalXoa()
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            if (data === true) {
+              self.GetDataAllOneNotification()
+              self.checkInputNotificationOne = false
+              self.checkInputUserNameOne = false
+            }
+            self.closeModalXoa()
+          })
+          .catch(error => {
+            console.error(error);
+          });
       }
     }
   })
@@ -810,4 +817,5 @@
   vm.GetDataAllOneNotification();
 
 </script>
+
 </html>

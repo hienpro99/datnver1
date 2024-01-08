@@ -68,6 +68,13 @@ app.set('view engine', '.hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
+const requireLogin = (req, res, next) => {
+    if (!req.session.useradmin) {
+        res.render('../Views/login.hbs', { error: 'vui lòng đăng nhập tài khoản hỗ trợ để sử dụng chức năng này' });
+    } else {
+        next();
+    }
+};
 //màn hình home
 app.get('/loadData', async(req, res) => {
     const choXacNhan = await Order.find({ status: 0 }).sort({ order_date: -1 });
@@ -124,19 +131,132 @@ app.get('/dataOrderUser/:id', async(req, res) => {
     const data = await Order.find({ user: userId }).sort({ order_date: -1 });
     res.json(data)
 })
-app.get('/home', async(req, res) => {
+app.use(session({
+    secret: 'dansjwoquwijxjkslajagsnnnc12cfg',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 3600000
+    }
+}));
+app.get('/login', async(req, res) => {
+    try {
+        res.render('../Views/login.hbs', {});
+    } catch (error) {
+        console.log(error);
+    }
+});
+app.get('/customer', requireLogin, async(req, res) => {
+    try {
+        const user = req.session.useradmin;
+        if (!user || typeof user !== 'object' || !user.level) {
+            res.render('../Views/screenHome.hbs', { error: 'Bạn chưa đăng nhập, vui lòng đăng nhập' });
+            return;
+        }
+
+        if (user.level !== 'admin') {
+            res.render('../Views/screenHome.hbs', { error: 'Bạn không có quyền truy cập' });
+            return;
+        }
+
+        const users = await UserAdmin.find({ level: { $ne: 'admin' } }, '-password');
+        res.render('../Views/customer.hbs', { users });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+app.post('/web/login', async(req, res) => {
+    try {
+        const { username, password } = req.body;
+        const useradmin = await UserAdmin.findOne({ username });
+
+        if (!useradmin || password !== useradmin.password) {
+            res.render('../Views/login.hbs', { error: 'Tài khoản hoặc mật khẩu không đúng' });
+            return;
+        }
+
+        const token = createToken(useradmin);
+        const bearerToken = `Bearer ${token}`;
+        res.setHeader('Authorization', bearerToken);
+        req.session.useradmin = {
+            id: useradmin._id,
+            username: useradmin.username,
+            level: useradmin.level
+        };
+
+        res.redirect('/home');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/login');
+});
+
+
+app.get('/accountManagement', requireLogin, async(req, res) => {
+    try {
+        const user = req.session.useradmin;
+
+        if (!user || !user.level) {
+            // res.status(500).send("<script>alert('bạn chưa đăng nhập, vui lòng đăng nhập')</script>");
+            res.render('../Views/screenHome.hbs', { error: 'bạn chưa đăng nhập, vui lòng đăng nhập' });
+        }
+        if (user.level !== "admin") {
+            // res.status(500).send("<script>alert('bạn không có quyền truy cập')</script>");
+            res.render('../Views/screenHome.hbs', { error: 'bạn không có quyền truy cập' });
+        }
+        res.render('../Views/screenAccountManagement.hbs');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.post("/web/register", requireLogin, async(req, res) => {
+    const { username, password, repassword, fullname } = req.body;
+    const user = req.session.useradmin;
+    try {
+        const existingUser = await UserAdmin.findOne({ username });
+
+        if (existingUser) {
+            const error = "Tài khoản đã tồn tại";
+            res.redirect("/login");
+        } else {
+
+            if (user.level !== "admin") {
+                res.render('../Views/login.hbs', { error: 'vui lòng đăng nhập tài khoản admin để sử dụng chức năng này' });
+            } else {
+                if (password !== repassword) {
+                    res.flash("Xác nhận mật khẩu mới không khớp");
+                    const error = "Xác nhận mật khẩu mới không khớp";
+                    res.redirect("/login");
+                }
+                const newUser = new UserAdmin({
+                    username,
+                    password,
+                    level: 'Nhân Viên'
+                });
+                await newUser.save();
+                res.redirect("/login");
+            }
+
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+});
+app.get('/home', requireLogin, async(req, res) => {
     res.render('../Views/screenHome.hbs');
 
 });
 app.get('/notifications', async(req, res) => {
     res.render('../Views/screenNotifications.hbs');
 });
-
-
-
-
-
-app.get('/statistic', async(req, res) => {
+app.get('/statistic', requireLogin, async(req, res) => {
     try {
         res.render('../Views/screenStatistics.hbs');
     } catch (error) {
@@ -144,8 +264,6 @@ app.get('/statistic', async(req, res) => {
     }
 
 });
-
-
 app.get('/dataTK', async(req, res) => {
     try {
         const data = await User.aggregate([
@@ -181,139 +299,6 @@ app.get('/dataTK', async(req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send('Lỗi rồi');
-    }
-});
-app.get('/customer', async(req, res) => {
-    try {
-        const data = await User.aggregate([{
-                $lookup: {
-                    from: "profiles",
-                    localField: "_id",
-                    foreignField: "user",
-                    as: "profile"
-                }
-            },
-            {
-                $unwind: {
-                    path: "$profile",
-                    preserveNullAndEmptyArrays: true
-                }
-            },
-            {
-                $lookup: {
-                    from: "addresses",
-                    localField: "_id",
-                    foreignField: "user",
-                    as: "address"
-                }
-            },
-            {
-                $unwind: {
-                    path: "$address",
-                    preserveNullAndEmptyArrays: true
-                }
-            },
-            {
-                $project: {
-                    _id: 1,
-                    username: 1,
-                    password: 1,
-                    role: 1,
-                    status: 1,
-                    date: 1,
-                    block_reason: 1,
-                    "profile.fullname": 1,
-                    "profile.gender": 1,
-                    "profile.avatar": 1,
-                    "profile.birthday": 1,
-                    "profile.email": 1,
-                    "profile.phone": 1,
-                    "profile.address": 1,
-                    "profile.username": "$username",
-                    "address.address": 1,
-                    "address.phone": 1,
-                    "profile.status": "$status",
-                }
-            }
-        ]);
-        res.render('../Views/customer.hbs', { data });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Lỗi rồi');
-    }
-});
-app.get('/customer/:userId', async(req, res) => {
-    const userId = req.params.userId;
-    if (!mongoose.Types.ObjectId.isValid(userId)) {
-        return res.status(400).json({ message: 'userId không hợp lệ' });
-    }
-
-    try {
-        const data = await User.aggregate([{
-                $match: {
-                    _id: new mongoose.Types.ObjectId(userId)
-                }
-            },
-            {
-                $lookup: {
-                    from: "profiles",
-                    localField: "_id",
-                    foreignField: "user",
-                    as: "profile"
-                }
-            },
-            {
-                $unwind: {
-                    path: "$profile",
-                    preserveNullAndEmptyArrays: true
-                }
-            },
-            {
-                $lookup: {
-                    from: "addresses",
-                    localField: "_id",
-                    foreignField: "user",
-                    as: "address"
-                }
-            },
-            {
-                $unwind: {
-                    path: "$address",
-                    preserveNullAndEmptyArrays: true
-                }
-            },
-            {
-                $project: {
-                    _id: 1,
-                    username: 1,
-                    password: 1,
-                    role: 1,
-                    status: 1,
-                    date: 1,
-                    block_reason: 1,
-                    "profile.fullname": 1,
-                    "profile.gender": 1,
-                    "profile.avatar": 1,
-                    "profile.birthday": 1,
-                    "profile.email": 1,
-                    "profile.phone": 1,
-                    "profile.address": 1,
-                    "profile.username": "$username",
-                    "address.address": 1,
-                    "address.phone": 1,
-                    "profile.status": "$status",
-                }
-            }
-        ]);
-
-        if (data.length > 0) {
-            res.json(data[0]);
-        } else {
-            res.status(404).json({ message: 'Không tìm thấy người dùng' });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Lỗi rồi' });
     }
 });
 
@@ -392,7 +377,7 @@ app.post('/unblock', async(req, res) => {
         return res.status(500).json({ message: 'Lỗi rồi' });
     }
 });
-app.get('/mess', async(req, res) => {
+app.get('/mess', requireLogin, async(req, res) => {
     try {
         res.render('../Views/screenMessger.hbs');
     } catch (error) {
@@ -412,7 +397,7 @@ app.get('/dataWarehouse', async(req, res) => {
 
 
 
-app.get('/warehouse', async(req, res) => {
+app.get('/warehouse', requireLogin, async(req, res) => {
     try {
         res.render('../Views/screenWarehouse.hbs');
     } catch (error) {
@@ -1102,116 +1087,7 @@ app.post('/checkClientMess', async(req, res) => {
         return res.status(500).json({ error: "Lỗi xử lý yêu cầu" });
     }
 });
-app.use(session({
-    secret: 'dansjwoquwijxjkslajagsnnnc12cfg',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 3600000
-    }
-}));
-app.get('/login', async(req, res) => {
-    try {
-        res.render('../Views/login.hbs', {});
-    } catch (error) {
-        console.log(error);
-    }
-});
-app.get('/api/users', async(req, res) => {
-    try {
-        const users = await UserAdmin.find({ level: { $ne: 'admin' } }, '-password');
-        res.render('../Views/screenAccountADM.hbs', { users });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
 
-app.post('/web/login', async(req, res) => {
-    try {
-        const { username, password } = req.body;
-        const useradmin = await UserAdmin.findOne({ username });
-
-        if (!useradmin || password !== useradmin.password) {
-            res.render('../Views/login.hbs', { error: 'Tài khoản hoặc mật khẩu không đúng' });
-            return;
-        }
-
-        const token = createToken(useradmin);
-        const bearerToken = `Bearer ${token}`;
-        res.setHeader('Authorization', bearerToken);
-        req.session.useradmin = {
-            id: useradmin._id,
-            username: useradmin.username,
-            level: useradmin.level
-        };
-
-        res.redirect('/home');
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-const requireLogin = (req, res, next) => {
-    if (!req.session.useradmin) {
-        res.redirect('/login');
-    } else {
-        next();
-    }
-};
-
-app.get('/accountManagement', requireLogin, async(req, res) => {
-    try {
-        const user = req.session.useradmin;
-
-        if (!user || !user.level) {
-            // res.status(500).send("<script>alert('bạn chưa đăng nhập, vui lòng đăng nhập')</script>");
-            res.render('../Views/screenHome.hbs', { error: 'bạn chưa đăng nhập, vui lòng đăng nhập' });
-        }
-        if (user.level !== "admin") {
-            // res.status(500).send("<script>alert('bạn không có quyền truy cập')</script>");
-            res.render('../Views/screenHome.hbs', { error: 'bạn không có quyền truy cập' });
-        }
-        res.render('../Views/screenAccountManagement.hbs');
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-
-
-
-
-
-
-
-
-app.post("/web/register", async(req, res) => {
-    const { username, password, repassword, fullname } = req.body;
-
-    try {
-        const existingUser = await UserAdmin.findOne({ username });
-
-        if (existingUser) {
-            const error = "Tài khoản đã tồn tại";
-            res.redirect("/login");
-        } else {
-            if (password !== repassword) {
-                res.flash("Xác nhận mật khẩu mới không khớp");
-                const error = "Xác nhận mật khẩu mới không khớp";
-                res.redirect("/login");
-            }
-            const newUser = new UserAdmin({
-                username,
-                password,
-                level: 'staff'
-            });
-            await newUser.save();
-            res.redirect("/login");
-        }
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-});
 
 app.get('/loadData/traHang/:id', async(req, res) => {
     try {

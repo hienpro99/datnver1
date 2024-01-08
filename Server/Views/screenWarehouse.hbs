@@ -332,23 +332,28 @@
     .box-extra-arrow:hover {
       background: #dedede
     }
-    .box-sort-sreach{
+
+    .box-sort-sreach {
       display: flex;
       height: 11%;
       justify-content: space-between;
     }
+
     .icon_thaoTac {
       width: 29px;
       cursor: pointer;
     }
-    .table td{
+
+    .table td {
       padding: 2px !important;
-      vertical-align:middle !important;
+      vertical-align: middle !important;
     }
+
     .text_Align {
       padding: 4px 14px;
       text-align: center;
     }
+
     .th-No {
       width: 55px;
     }
@@ -390,372 +395,367 @@
       text-align: center;
     }
 
-    .td-nameProduct{
+    .td-nameProduct {
       padding: 0 14px;
     }
   </style>
 </head>
 
 <body class="bg-gray-200">
-<div id="dataALL">
-  <div class="body-Main">
-    <div class="box-Main-One">
-      <div class="box-Text-Title">
-        <div class="text-Title">Shop BipBip</div>
-      </div>
-      <div class="item-click">
-        <a href="/statistic" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
-           style="text-decoration: none ">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="analytics.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Thống kê</div>
-          </div>
-        </a>
-        <a href="/home" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
-           style="display: flex; text-decoration: none ">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="dashboard.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Đơn Hàng</div>
-          </div>
-          <span class="badge" style="color: white;font-size: 14px;">\{{donHangMoi}}</span>
-        </a>
-        <a href="/mess" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none">
-          <div class="flex" style="padding: 12px;">
-            <div>
-              <img class="w-5 h-5 " src="messages.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Tin Nhắn</div>
-          </div>
-          <span class="badge" style="color: white;font-size: 14px;">\{{tinNhanMoi}}</span>
-        </a>
-        <a href="/notifications" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="notifications.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100">Thông báo</div>
-          </div>
-        </a>
-        <a href="/accountManagement" class="cursor-pointer mess ml-3 mt-3 w-10/12"
-           style="display: flex; text-decoration: none">
-          <div class="flex" style="padding: 12px;">
-            <div>
-              <img class="w-5 h-5 " src="iconuser.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Quản Lý người dùng</div>
-          </div>
-        </a>
-        <a href="/warehouse" class="cursor-pointer mess ml-3 mt-3 w-10/12"
-           style="border-bottom-width: 1px;text-decoration: none">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="kho.svg" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100">Kho Hàng</div>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="box-Main-Two">
-      <div class="box-Main-Extra">
-        <div class="box-infomation">
-          <div class="information">
-            <div class="information-Admin">
-              <img src="person.png" class="w-10 h-10" alt="">
-              <span>Admin</span>
-            </div>
-            <div>
-              <a class="link-a" href="/login">Đăng xuất</a>
-            </div>
-          </div>
+  <div id="dataALL">
+    <div class="body-Main">
+      <div class="box-Main-One">
+        <div class="box-Text-Title">
+          <div class="text-Title">Shop BipBip</div>
         </div>
-        <!--Top navbar-->
-
-        <div class="box-order-Main">
-
-          <div :class="checkStatus ? ' ' : 'display_None' " class="load-Spinner">
-            <div class="spinner-border text-primary"></div>
-          </div>
-
-          <div id="hienThidata" :class="checkStatus ? 'display_None' : ' ' ">
-            <div class="box-Main">
-              <div class="box-data">
-                <div class="card-header box-sort-sreach" >
-
-                  <div style="width: 81%;display: flex;">
-                    <div style="display: flex;width: 32%;">
-                      <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle float-left" style="width: 80px;"
-                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          \{{ selectedValueGender }}
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" @click="selectOptionGender('all')" style="cursor: pointer;">Tất
-                            cả</a></li>
-                          <li><a class="dropdown-item" @click="selectOptionGender('men')" style="cursor: pointer;">Nam</a>
-                          </li>
-                          <li><a class="dropdown-item" @click="selectOptionGender('women')"
-                                 style="cursor: pointer;">Nữ</a></li>
-                        </ul>
-                      </div>
-
-                      <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle float-left" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" style="margin-left:10px; ">
-                          \{{selectedValueMoney}}
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li style="cursor: pointer;"><a class="dropdown-item" @click="selectOptionSort('lowtohight')">Giá:
-                            Thấp đến Cao</a></li>
-                          <li style="cursor: pointer;"><a class="dropdown-item" @click="selectOptionSort('highttolow')">Giá:
-                            Cao đến Thấp</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="card-search">
-                      <div class="search-container">
-                        <input v-model="searchData" type="text" class="search-input" id="searchInput"
-                               placeholder="Tìm kiếm..." autocomplete="off">
-                      </div>
-                    </div>
-                  </div>
-                  <button class="btn btn-primary float-right" data-toggle="modal" data-target="#addProductModal">Thêm
-                    sản phẩm
-                  </button>
-                </div>
-
-
-                <div class="card-body-product">
-                  <div style="height: 93%;">
-                    <table class="table table-bordered " style="margin-bottom:0px">
-                      <thead>
-                      <tr>
-                        <th class="th-No">STT</th>
-                        <th class="th-img">Ảnh</th>
-                        <th class="th-NameProduct">Tên sản phẩm</th>
-                        <th class="th-Money">Giá</th>
-                        <th class="th-Color">Số màu</th>
-                        <th class="th-Size">Số lượng</th>
-                        <th class="th-Loai">Loại</th>
-                        <th class="th-thaoTac">Thao tác</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-
-                      <tr v-for="(item,index) in dataWarehouseAll[indexSize-1]">
-                        <td>
-                          <div class="text_Align">
-                            \{{((indexSize-1) * 7)+index+1}}
-                          </div>
-                        </td>
-                        <td>
-                          <div class="text_Align">
-                            <img :src="item.product_image" class="img_product"/>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="td-nameProduct">
-                            \{{item.product_title}}
-                          </div>
-                        </td>
-                        <td>
-                          <div class="text_Align">
-                          \{{formatPrice(item.product_price)}}
-                        </div>
-                        </td>
-                        <td>
-                          <div class="text_Align">
-                            \{{item.product_quantityColor}}
-                          </div>
-                        </td>
-                        <td>
-                          <div class="text_Align">
-                            \{{item.product_quantity}}
-                          </div>
-                        </td>
-                        <td>
-                          <div v-if="item.product_category == 'men'"  class="text_Align"> Nam</div>
-                          <div v-if="item.product_category == 'women'"  class="text_Align"> Nữ</div>
-                        </td>
-                        <td>
-                          <div  style="display: flex;justify-content: space-around">
-                            <img @click="openModalSuaSP(item)" class="icon_thaoTac"
-                                 src="pen.png">
-                            <img @click="openModalXoaSP(item)" class="icon_thaoTac"
-                                 src="delete.png">
-                            <img @click="XemChiTiet(item._id)" class="icon_thaoTac"
-                                 src="show.png">
-                          </div>
-                        </td>
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="box-size-table" v-if="toatalWare > 7">
-                    <div class="text-box-size-table">\{{sizeTable(indexSize)}} của tổng số \{{toatalWare}}</div>
-                    <div class="box-arrow">
-                      <div class="box-extra-arrow" @click="backSize(dataWarehouseAll)">
-                        <img src="next.png" style="width: 24px" alt="">
-                      </div>
-                      <div class="box-extra-arrow" @click="arrowBackSize(dataWarehouseAll)">
-                        <img src="back-arrow.png" style="width: 24px" alt="">
-                      </div>
-                      <div class="box-extra-arrow" @click="arrowNextSize(dataWarehouseAll)">
-                        <img src="right-arrow.png" style="width: 24px" alt="">
-                      </div>
-                      <div class="box-extra-arrow" @click="nextSize(dataWarehouseAll)">
-                        <img src="back.png" style="width: 24px" alt="">
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog"
-                     aria-labelledby="addProductModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="addProductModalLabel">Thêm sản phẩm</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <form action="/home/add" method="POST" class="mb-3" id="addProductForm"
-                              enctype="multipart/form-data">
-                          <div>
-                            <label for="product_image">Ảnh:</label>
-                            <input type="file" id="product_image" name="product_image" accept="image/*" required>
-
-                          </div>
-                          <div class="form-group">
-                            <label for="product_title">Tiêu đề</label>
-                            <input type="text" class="form-control" id="product_title" autocomplete="off"
-                                   name="product_title" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="product_price">Giá</label>
-                            <input type="number" class="form-control" id="product_price"
-                                   name="product_price" required>
-                          </div>
-                          <div class=" form-group">
-                            <label for="product_category">Thể loại</label>
-                            <select class="form-control" id="product_category"
-                                    name="product_category" required>
-                              <option value="men">Nam</option>
-                              <option value="women">Nữ</option>
-                            </select>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Thêm</button>
-
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="XoaSP" tabindex="-1" role="dialog"
-       aria-labelledby="deleteProductModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteProductModalLabel">Xóa sản phẩm
-          </h5>
-          <button type="button" class="close" @click="closeModalXoaSP" data-dismiss="modal"
-                  aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Bạn có chắc chắn muốn xóa sản phẩm \{{dataXoaSanPham.product_title}} ?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary"
-                  data-dismiss="modal">Huỷ
-          </button>
-          <form @submit.prevent="submitDeleteContentChat">
-            <button type="submit" class="btn btn-danger">Xóa</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="SuaSP" tabindex="-1" role="dialog"
-       aria-labelledby="addProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addProductModalLabel">Sửa sản phẩm</h5>
-          <button type="button" class="close" @click="closeModalSuaSP" data-dismiss="modal"
-                  aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form :action="'/home/edit/' + dataSuaSanPham._id" method="POST" class="mb-3"
-                id="addProductForm" enctype="multipart/form-data">
-            <div style="display: flex;">
+        <div class="item-click">
+          <a href="/statistic" class=" cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none ">
+            <div class="flex" style=" padding: 12px;">
               <div>
-                <img :src="dataSuaSanPham.product_image"
-                     style="height: 95px; width: 95px; border-radius: 5px;"
-                     alt="">
+                <img class="w-5 h-5" src="analytics.png" alt="">
               </div>
-              <div class="form-group"
-                   style=" margin-left: 8px; width: 80%; ">
-                <label for="product_image">Ảnh</label>
-                <input type="file" class="form-control"
-                       id="product_image" name="product_image"
-                       v-model="formData.product_image" required>
+              <div class="mx-3 text-sm text-gray-100 ">Thống kê</div>
+            </div>
+          </a>
+          <a href="/home" class=" cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none ">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="dashboard.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Đơn Hàng</div>
+            </div>
+            <span class="badge" style="color: white;font-size: 14px;">\{{donHangMoi}}</span>
+          </a>
+          <a href="/mess" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none">
+            <div class="flex" style="padding: 12px;">
+              <div>
+                <img class="w-5 h-5 " src="messages.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Tin Nhắn</div>
+            </div>
+            <span class="badge" style="color: white;font-size: 14px;">\{{tinNhanMoi}}</span>
+          </a>
+          <a href="/notifications" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="notifications.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100">Thông báo</div>
+            </div>
+          </a>
+          <a href="/accountManagement" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+            style="display: flex; text-decoration: none">
+            <div class="flex" style="padding: 12px;">
+              <div>
+                <img class="w-5 h-5 " src="iconuser.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Quản Lý người dùng</div>
+            </div>
+          </a>
+          <a href="/customer" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+            style="display: flex; text-decoration: none">
+            <div class="flex" style="padding: 12px;">
+              <div>
+                <img class="w-5 h-5 " src="nhansu.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Danh Sách Nhân Sự</div>
+            </div>
+          </a>
+          <a href="/warehouse" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+            style="border-bottom-width: 1px;text-decoration: none">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="kho.svg" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100">Kho Hàng</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="box-Main-Two">
+        <div class="box-Main-Extra">
+          <div class="box-infomation">
+            <div class="information">
+              <div class="information-Admin">
+                <img src="person.png" class="w-10 h-10" alt="">
+                <span>Admin</span>
+              </div>
+              <div>
+                <a class="link-a" href="/logout">Đăng xuất</a>
               </div>
             </div>
-            <div class="form-group">
-              <label for="product_title">Tiêu đề</label>
-              <input type="text" class="form-control" id="product_title"
-                     name="product_title" autocomplete="off"
-                     v-model="formData.product_title" required>
-            </div>
-            <div class="form-group">
-              <label for="product_price">Giá</label>
-              <input type="number" class="form-control" id="product_price"
-                     min="0"
-                     v-model="formData.product_price" name="product_price"
-                     required>
-            </div>
-            <div class="form-group">
+          </div>
+          <!--Top navbar-->
 
+          <div class="box-order-Main">
+
+            <div :class="checkStatus ? ' ' : 'display_None' " class="load-Spinner">
+              <div class="spinner-border text-primary"></div>
+            </div>
+
+            <div id="hienThidata" :class="checkStatus ? 'display_None' : ' ' ">
+              <div class="box-Main">
+                <div class="box-data">
+                  <div class="card-header box-sort-sreach">
+
+                    <div style="width: 81%;display: flex;">
+                      <div style="display: flex;width: 32%;">
+                        <div class="dropdown">
+                          <button class="btn btn-outline-secondary dropdown-toggle float-left" style="width: 80px;"
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            \{{ selectedValueGender }}
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" @click="selectOptionGender('all')" style="cursor: pointer;">Tất
+                                cả</a></li>
+                            <li><a class="dropdown-item" @click="selectOptionGender('men')"
+                                style="cursor: pointer;">Nam</a>
+                            </li>
+                            <li><a class="dropdown-item" @click="selectOptionGender('women')"
+                                style="cursor: pointer;">Nữ</a></li>
+                          </ul>
+                        </div>
+
+                        <div class="dropdown">
+                          <button class="btn btn-outline-secondary dropdown-toggle float-left" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" style="margin-left:10px; ">
+                            \{{selectedValueMoney}}
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li style="cursor: pointer;"><a class="dropdown-item"
+                                @click="selectOptionSort('lowtohight')">Giá:
+                                Thấp đến Cao</a></li>
+                            <li style="cursor: pointer;"><a class="dropdown-item"
+                                @click="selectOptionSort('highttolow')">Giá:
+                                Cao đến Thấp</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="card-search">
+                        <div class="search-container">
+                          <input v-model="searchData" type="text" class="search-input" id="searchInput"
+                            placeholder="Tìm kiếm..." autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary float-right" data-toggle="modal" data-target="#addProductModal">Thêm
+                      sản phẩm
+                    </button>
+                  </div>
+
+
+                  <div class="card-body-product">
+                    <div style="height: 93%;">
+                      <table class="table table-bordered " style="margin-bottom:0px">
+                        <thead>
+                          <tr>
+                            <th class="th-No">STT</th>
+                            <th class="th-img">Ảnh</th>
+                            <th class="th-NameProduct">Tên sản phẩm</th>
+                            <th class="th-Money">Giá</th>
+                            <th class="th-Color">Số màu</th>
+                            <th class="th-Size">Số lượng</th>
+                            <th class="th-Loai">Loại</th>
+                            <th class="th-thaoTac">Thao tác</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr v-for="(item,index) in dataWarehouseAll[indexSize-1]">
+                            <td>
+                              <div class="text_Align">
+                                \{{((indexSize-1) * 7)+index+1}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="text_Align">
+                                <img :src="item.product_image" class="img_product" />
+                              </div>
+                            </td>
+                            <td>
+                              <div class="td-nameProduct">
+                                \{{item.product_title}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="text_Align">
+                                \{{formatPrice(item.product_price)}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="text_Align">
+                                \{{item.product_quantityColor}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="text_Align">
+                                \{{item.product_quantity}}
+                              </div>
+                            </td>
+                            <td>
+                              <div v-if="item.product_category == 'men'" class="text_Align"> Nam</div>
+                              <div v-if="item.product_category == 'women'" class="text_Align"> Nữ</div>
+                            </td>
+                            <td>
+                              <div style="display: flex;justify-content: space-around">
+                                <img @click="openModalSuaSP(item)" class="icon_thaoTac" src="pen.png">
+                                <img @click="openModalXoaSP(item)" class="icon_thaoTac" src="delete.png">
+                                <img @click="XemChiTiet(item._id)" class="icon_thaoTac" src="show.png">
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="box-size-table" v-if="toatalWare > 7">
+                      <div class="text-box-size-table">\{{sizeTable(indexSize)}} của tổng số \{{toatalWare}}</div>
+                      <div class="box-arrow">
+                        <div class="box-extra-arrow" @click="backSize(dataWarehouseAll)">
+                          <img src="next.png" style="width: 24px" alt="">
+                        </div>
+                        <div class="box-extra-arrow" @click="arrowBackSize(dataWarehouseAll)">
+                          <img src="back-arrow.png" style="width: 24px" alt="">
+                        </div>
+                        <div class="box-extra-arrow" @click="arrowNextSize(dataWarehouseAll)">
+                          <img src="right-arrow.png" style="width: 24px" alt="">
+                        </div>
+                        <div class="box-extra-arrow" @click="nextSize(dataWarehouseAll)">
+                          <img src="back.png" style="width: 24px" alt="">
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog"
+                    aria-labelledby="addProductModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="addProductModalLabel">Thêm sản phẩm</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="/home/add" method="POST" class="mb-3" id="addProductForm"
+                            enctype="multipart/form-data">
+                            <div>
+                              <label for="product_image">Ảnh:</label>
+                              <input type="file" id="product_image" name="product_image" accept="image/*" required>
+
+                            </div>
+                            <div class="form-group">
+                              <label for="product_title">Tiêu đề</label>
+                              <input type="text" class="form-control" id="product_title" autocomplete="off"
+                                name="product_title" required>
+                            </div>
+                            <div class="form-group">
+                              <label for="product_price">Giá</label>
+                              <input type="number" class="form-control" id="product_price" name="product_price"
+                                required>
+                            </div>
+                            <div class=" form-group">
+                              <label for="product_category">Thể loại</label>
+                              <select class="form-control" id="product_category" name="product_category" required>
+                                <option value="men">Nam</option>
+                                <option value="women">Nữ</option>
+                              </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Thêm</button>
+
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="XoaSP" tabindex="-1" role="dialog" aria-labelledby="deleteProductModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteProductModalLabel">Xóa sản phẩm
+            </h5>
+            <button type="button" class="close" @click="closeModalXoaSP" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Bạn có chắc chắn muốn xóa sản phẩm \{{dataXoaSanPham.product_title}} ?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ
+            </button>
+            <form @submit.prevent="submitDeleteContentChat">
+              <button type="submit" class="btn btn-danger">Xóa</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="SuaSP" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addProductModalLabel">Sửa sản phẩm</h5>
+            <button type="button" class="close" @click="closeModalSuaSP" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form :action="'/home/edit/' + dataSuaSanPham._id" method="POST" class="mb-3" id="addProductForm"
+              enctype="multipart/form-data">
+              <div style="display: flex;">
+                <div>
+                  <img :src="dataSuaSanPham.product_image" style="height: 95px; width: 95px; border-radius: 5px;"
+                    alt="">
+                </div>
+                <div class="form-group" style=" margin-left: 8px; width: 80%; ">
+                  <label for="product_image">Ảnh</label>
+                  <input type="file" class="form-control" id="product_image" name="product_image"
+                    v-model="formData.product_image" required>
+                </div>
+              </div>
               <div class="form-group">
-                <label for="product_category">Thể loại</label>
-                <select class="form-control" id="product_category" name="product_category" v-model="selectGender"
-                        @change="selectClickGender">
-                  <option v-for="item in selectGenderClick" :value="item.value" :key="item.value">\{{ item.name }}
-                  </option>
-                </select>
+                <label for="product_title">Tiêu đề</label>
+                <input type="text" class="form-control" id="product_title" name="product_title" autocomplete="off"
+                  v-model="formData.product_title" required>
               </div>
+              <div class="form-group">
+                <label for="product_price">Giá</label>
+                <input type="number" class="form-control" id="product_price" min="0" v-model="formData.product_price"
+                  name="product_price" required>
+              </div>
+              <div class="form-group">
 
-              <button type="button" class="btn btn-secondary"
-                      data-dismiss="modal">Huỷ
-              </button>
-              <button type="submit" class="btn btn-primary">Sửa</button>
-            </div>
-          </form>
+                <div class="form-group">
+                  <label for="product_category">Thể loại</label>
+                  <select class="form-control" id="product_category" name="product_category" v-model="selectGender"
+                    @change="selectClickGender">
+                    <option v-for="item in selectGenderClick" :value="item.value" :key="item.value">\{{ item.name }}
+                    </option>
+                  </select>
+                </div>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ
+                </button>
+                <button type="submit" class="btn btn-primary">Sửa</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </body>
 
 <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
@@ -785,8 +785,8 @@
       searchData: '',
       selectGender: 'Giới tính',
       selectGenderClick: [
-        {value: 'men', name: 'Nam'},
-        {value: 'women', name: 'Nữ'},
+        { value: 'men', name: 'Nam' },
+        { value: 'women', name: 'Nữ' },
       ],
       formData: {
         product_image: "",
@@ -835,14 +835,14 @@
           },
           body: JSON.stringify(self.formData)
         })
-            .then(response => response.json())
-            .then(data => {
-              self.loadDataWarehouseLast()
-              self.closeModalXoaSP()
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            self.loadDataWarehouseLast()
+            self.closeModalXoaSP()
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       selectClickGender() {
         this.formData.product_category = this.selectGender
@@ -983,20 +983,20 @@
             'Content-Type': 'application/json'
           }
         })
-            .then(response => response.json())
-            .then(data => {
-              const sortedData = data.sort((a, b) => {
-                if (a.status === b.status) {
-                  return 0;
-                }
-                return a.status ? -1 : 1;
-              });
-              self.tinNhanMoi = sortedData.filter(item => item.status === true).length
-
-            })
-            .catch(error => {
-              console.error(error);
+          .then(response => response.json())
+          .then(data => {
+            const sortedData = data.sort((a, b) => {
+              if (a.status === b.status) {
+                return 0;
+              }
+              return a.status ? -1 : 1;
             });
+            self.tinNhanMoi = sortedData.filter(item => item.status === true).length
+
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       GetDataCart: function () {
         var self = this;
@@ -1006,13 +1006,13 @@
             'Content-Type': 'application/json'
           },
         })
-            .then(response => response.json())
-            .then(data => {
-              self.donHangMoi = data.length
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            self.donHangMoi = data.length
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       GetDataWarehouse: function () {
         var self = this;
@@ -1028,16 +1028,16 @@
             'Content-Type': 'application/json'
           },
         })
-            .then(response => response.json())
-            .then(data => {
-              var dataAll = splitList(data)
-              self.dataWarehouseAll = dataAll
-              self.dataSearch = data
-              self.toatalWare = data.length
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            var dataAll = splitList(data)
+            self.dataWarehouseAll = dataAll
+            self.dataSearch = data
+            self.toatalWare = data.length
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
 
       loadDataWarehouseLast() {
@@ -1048,17 +1048,17 @@
             'Content-Type': 'application/json'
           },
         })
-            .then(response => response.json())
-            .then(data => {
-              var dataAll = splitList(data)
-              self.dataWarehouseAll = dataAll
-              self.toatalWare = data.length
-              self.dataSearch = data
-              self.checkStatus = false
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            var dataAll = splitList(data)
+            self.dataWarehouseAll = dataAll
+            self.toatalWare = data.length
+            self.dataSearch = data
+            self.checkStatus = false
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
 
 
@@ -1079,4 +1079,5 @@
 
 
 </script>
+
 </html>

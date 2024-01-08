@@ -200,6 +200,16 @@
             padding: 20px;
         }
 
+        .table td {
+            vertical-align: middle;
+            font-size: 15px;
+        }
+
+        .table .table-actions a {
+            margin-right: 5px;
+        }
+
+
         .btn {
             font-size: 14px;
             font-weight: bold;
@@ -297,13 +307,22 @@
                     <div class="mx-3 text-sm text-gray-100">Thông báo</div>
                 </div>
             </a>
-            <a href="/customer" class="cursor-pointer mess ml-3 mt-3 w-10/12"
-                style="border-bottom-width: 1px;  text-decoration: none">
+            <a href="/accountManagement" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+                style="display: flex; text-decoration: none">
                 <div class="flex" style="padding: 12px;">
                     <div>
-                        <img class="w-5 h-5 " src="../iconuser.png" alt="">
+                        <img class="w-5 h-5 " src="iconuser.png" alt="">
                     </div>
                     <div class="mx-3 text-sm text-gray-100 ">Quản Lý người dùng</div>
+                </div>
+            </a>
+            <a href="/customer" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+                style="display: flex;border-bottom-width: 1px; text-decoration: none">
+                <div class="flex" style="padding: 12px;">
+                    <div>
+                        <img class="w-5 h-5 " src="nhansu.png" alt="">
+                    </div>
+                    <div class="mx-3 text-sm text-gray-100 ">Danh Sách Nhân Sự</div>
                 </div>
             </a>
             <a href="/warehouse" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
@@ -324,7 +343,7 @@
                         <span class="block p-2">Admin</span>
                     </div>
                     <div class="right md:w-1/4 sm:w-2/3 flex  justify-content-end ">
-                        <a href="/login"
+                        <a href="/logout"
                             style=" text-decoration: none; color: black; line-height: 58px; margin-right: 24px; ">Đăng
                             xuất</a>
                     </div>
@@ -336,48 +355,37 @@
                         <option value="allUsers" selected>Tất cả</option>
                         <option value="bannedUsers">Đã chặn</option>
                     </select>
+                    <br>
+                    <button style="background-color: #ff0000;" class="btn btn-primary" onclick="redirectToRegister()">Tạo tài khoản nhân viên</button>
                 </div>
 
                 <div class="table-container">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th rowspan="2">STT</th>
-                                <th scope="col" colspan="2">ID</th>
-                                {{!-- <th scope="col">Ảnh</th> --}}
-                                <th scope="col" colspan="2">Tên</th>
-                                {{!-- <th scope="col">Giới Tính</th>
-                                <th scope="col" colspan="2">Ngày sinh</th>
-                                <th scope="col" colspan="3">Email</th>
-                                <th scope="col" colspan="2">SDT</th>
-                                <th scope="col" colspan="2">Địa chỉ</th> --}}
-                                {{!-- <th scope="col">Trạng Thái</th> --}}
-                                <th scope="col" colspan="3">Lý do chặn</th>
-                                <th scope="col" colspan="2">Hành động</th>
+                                <th class="th-No">STT</th>
+                                <th style="text-align: center;" colspan="2">Email</th>
+                                <th class="th-Username " colspan="2">Time</th>
+                                <th class="th-Status">Chức Vụ</th>
+                                <th style="text-align: center;">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{#each data}}
+                            {{#each users}}
                             <tr>
                                 <td>{{@index}}</td>
-                                <td style="color: #ff0000; font-size: 8px;" colspan="2">{{_id}}</td>
-                                {{!-- <td><img src="{{profile.avatar}}" alt="Avatar" width="70%"></td> --}}
-                                <td colspan="2">{{profile.fullname}}</td>
-                                {{!-- <td>{{profile.gender}}</td>
-                                <td colspan="2">{{profile.birthday}}</td>
-                                <td colspan="3" style=" font-size: 10px;">{{profile.username}}</td>
-                                <td colspan="2">{{address.phone}}</td>
-                                <td colspan="2">{{address.address}}</td> --}}
-                                {{!-- <td>{{profile.status}}</td> --}}
-                                <td style="color: #e813cf; font-weight: bold;" colspan="3">{{block_reason}}</td>
-                                <td class="action-buttons" colspan="2" style="margin-left: 30px;">
+                                <td colspan="2">{{username}}</td>
+                                <td colspan="2">{{date}}</td>
+                                <td>{{level}}</td>
+                                <td class="action-buttons" style="margin-left: 30px;">
                                     {{#if profile.status}}
                                     <button class="unban-button" data-toggle="modal"
                                         data-target="#unbanConfirmationModal" data-user-id="{{_id}}"
-                                        onclick="setUserId('{{_id}}')">Mở chặn</button>
+                                        onclick="setUserId('{{_id}}')"><img src="lock.png" alt=""></button>
                                     {{else}}
                                     <button class="ban-button" data-toggle="modal" data-target="#blockUserModal"
-                                        data-user-id="{{_id}}" onclick="setUserId('{{_id}}')">Chặn</button>
+                                        data-user-id="{{_id}}" onclick="setUserId('{{_id}}')">
+                                        <img src="lock.png" alt=""></button>
                                     {{/if}}
 
                                     <button class="btn btn-info" onclick="showUserDetails('{{_id}}')">
@@ -390,51 +398,6 @@
                             {{/each}}
                         </tbody>
                     </table>
-                </div>
-                <form action="/block/" method="POST" id="blockForm">
-                    <div class="modal" id="blockUserModal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Chặn người dùng</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <label for="UserId">ID: <span id="modalUserId"></span></label>
-                                    <br>
-                                    <label for="blockReason">Nhập nội dung chặn:</label>
-                                    <input type="text" class="form-control" id="blockReason" name="blockReason">
-                                    <input type="hidden" id="modalUserIdInput" name="userId">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                    <button type="button" class="btn btn-primary"
-                                        onclick="submitBlockForm()">Chặn</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <div class="modal" id="unbanConfirmationModal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Bỏ chặn người dùng</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Bạn có chắc chắn muốn bỏ chặn người dùng không?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                <button type="button" class="btn btn-primary" onclick="unbanUser()">Bỏ chặn</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal" id="userDetailsModal" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
@@ -482,6 +445,11 @@
         </div>
         <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        <script>
+            function redirectToRegister() {
+                window.location.href = '/login';
+            }
+        </script>
         <script>
             function showUserDetails(userId) {
                 fetch(`/customer/${userId}`)
@@ -666,32 +634,6 @@
             statusFilter.addEventListener('change', filterRows);
 
             searchInput.addEventListener('input', filterRows);
-
-            function unbanUser() {
-                var userId = document.getElementById('modalUserId').innerText;
-
-                fetch('/unblock', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        userId: userId,
-                    }),
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.message.includes('bỏ chặn')) {
-                            window.location.reload();
-                        } else {
-                            alert('Có lỗi xảy ra khi bỏ chặn người dùng.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('Có lỗi xảy ra khi gửi yêu cầu.');
-                    });
-            }
         </script>
 
 

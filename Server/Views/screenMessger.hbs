@@ -11,6 +11,7 @@
     body {
       font-family: 'Arial', sans-serif;
     }
+
     .btn {
       font-size: 14px;
       font-weight: bold;
@@ -236,134 +237,144 @@
       text-align: center;
     }
 
-    .display_None{
+    .display_None {
       display: none;
     }
   </style>
 </head>
 
 <body class="bg-gray-200">
-<div id="dataALL">
-  <div class="body-Main">
-    <div class="box-Main-One">
-      <div class="box-Text-Title">
-        <div class="text-Title">Shop BipBip</div>
-      </div>
-      <div class="item-click">
-        <a href="/statistic" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
-           style="text-decoration: none ">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="analytics.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Thống kê</div>
-          </div>
-        </a>
-        <a href="/home" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
-           style="display: flex; text-decoration: none ">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="dashboard.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Đơn Hàng</div>
-          </div>
-          <span class="badge" style="color: white;font-size: 14px;">\{{donHangMoi}}</span>
-        </a>
-        <a href="/mess" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex;border-bottom-width: 1px; text-decoration: none">
-          <div class="flex" style="padding: 12px;">
-            <div>
-              <img class="w-5 h-5 " src="messages.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Tin Nhắn</div>
-          </div>
-          <span class="badge" style="color: white;font-size: 14px;">\{{tinNhanMoi}}</span>
-        </a>
-        <a href="/notifications" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="notifications.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100">Thông báo</div>
-          </div>
-        </a>
-        <a href="/accountManagement" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none">
-          <div class="flex" style="padding: 12px;">
-            <div>
-              <img class="w-5 h-5 " src="iconuser.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Quản Lý người dùng</div>
-          </div>
-        </a>
-        <a href="/warehouse" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="kho.svg" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100">Kho Hàng</div>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <div class="box-Main-Two">
-      <div class="box-Main-Extra">
-        <div class="box-infomation">
-          <div class="information-Box">
-            <div class="information-Admin">
-              <img src="person.png" class="w-10 h-10" alt="">
-              <span>Admin</span>
-            </div>
-            <div>
-              <a class="link-a" href="/login">Đăng xuất</a>
-            </div>
-          </div>
+  <div id="dataALL">
+    <div class="body-Main">
+      <div class="box-Main-One">
+        <div class="box-Text-Title">
+          <div class="text-Title">Shop BipBip</div>
         </div>
-        <div class="box-order-Main">
+        <div class="item-click">
+          <a href="/statistic" class=" cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none ">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="analytics.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Thống kê</div>
+            </div>
+          </a>
+          <a href="/home" class=" cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none ">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="dashboard.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Đơn Hàng</div>
+            </div>
+            <span class="badge" style="color: white;font-size: 14px;">\{{donHangMoi}}</span>
+          </a>
+          <a href="/mess" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+            style="display: flex;border-bottom-width: 1px; text-decoration: none">
+            <div class="flex" style="padding: 12px;">
+              <div>
+                <img class="w-5 h-5 " src="messages.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Tin Nhắn</div>
+            </div>
+            <span class="badge" style="color: white;font-size: 14px;">\{{tinNhanMoi}}</span>
+          </a>
+          <a href="/notifications" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="notifications.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100">Thông báo</div>
+            </div>
+          </a>
+          <a href="/accountManagement" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+            style="display: flex; text-decoration: none">
+            <div class="flex" style="padding: 12px;">
+              <div>
+                <img class="w-5 h-5 " src="iconuser.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Quản Lý người dùng</div>
+            </div>
+          </a>
+          <a href="/customer" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+            style="display: flex; text-decoration: none">
+            <div class="flex" style="padding: 12px;">
+              <div>
+                <img class="w-5 h-5 " src="nhansu.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Danh Sách Nhân Sự</div>
+            </div>
+          </a>
+          <a href="/warehouse" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="kho.svg" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100">Kho Hàng</div>
+            </div>
+          </a>
+        </div>
+      </div>
 
-          <div class="load-Spinner" :class="checkStatus ? ' ' : 'display_None' ">
-            <div class="spinner-border text-primary"></div>
+      <div class="box-Main-Two">
+        <div class="box-Main-Extra">
+          <div class="box-infomation">
+            <div class="information-Box">
+              <div class="information-Admin">
+                <img src="person.png" class="w-10 h-10" alt="">
+                <span>Admin</span>
+              </div>
+              <div>
+                <a class="link-a" href="/logout">Đăng xuất</a>
+              </div>
+            </div>
           </div>
+          <div class="box-order-Main">
 
-          <div id="hienThidata" :class="checkStatus ? 'display_None' : ' ' ">
-            <div class="box-chat-Main">
-              <div class="box-extra-chat">
-                <div class="box-All-Chat">
-                  <div v-for="item in dataTitleChat" :class="{'informationNew':item.status,'information':!item.status}"
-                       @click="OpenChatUser(item.user)">
-                    \{{item.fullName}}
-                  </div>
-                </div>
-                <div id="checkData" class="box-One-Chat" v-if="dataContentChat.length > 0">
-                  <div class="name-user">
-                    \{{nameUser}}
-                  </div>
-                  <div id="listConten"  class="box-Content-One-chat">
-                    <div class="contenChat" v-for="item in dataContentChat"
-                         :class="{'admin': item.beLong === 'admin', 'user': item.beLong !== 'admin'}">
-                      \{{item.conTenMain}}
+            <div class="load-Spinner" :class="checkStatus ? ' ' : 'display_None' ">
+              <div class="spinner-border text-primary"></div>
+            </div>
+
+            <div id="hienThidata" :class="checkStatus ? 'display_None' : ' ' ">
+              <div class="box-chat-Main">
+                <div class="box-extra-chat">
+                  <div class="box-All-Chat">
+                    <div v-for="item in dataTitleChat"
+                      :class="{'informationNew':item.status,'information':!item.status}"
+                      @click="OpenChatUser(item.user)">
+                      \{{item.fullName}}
                     </div>
                   </div>
-                  <form @submit.prevent="submitContentChat" class="mb-3" style="margin: 0 14px;">
-                    <div class="input-group" style="justify-content: space-around;">
-                      <label :class="checkInput ?'box-input-err': 'box-input'">
-                        <input style="width: 100%;outline: unset !important;" type="text"
-                               v-model="formData.conTenMain">
-                      </label>
-                      <div style="margin-left: 8px;">
-                        <button class="btn btn-primary" type="submit">Gửi</button>
+                  <div id="checkData" class="box-One-Chat" v-if="dataContentChat.length > 0">
+                    <div class="name-user">
+                      \{{nameUser}}
+                    </div>
+                    <div id="listConten" class="box-Content-One-chat">
+                      <div class="contenChat" v-for="item in dataContentChat"
+                        :class="{'admin': item.beLong === 'admin', 'user': item.beLong !== 'admin'}">
+                        \{{item.conTenMain}}
                       </div>
                     </div>
-                  </form>
+                    <form @submit.prevent="submitContentChat" class="mb-3" style="margin: 0 14px;">
+                      <div class="input-group" style="justify-content: space-around;">
+                        <label :class="checkInput ?'box-input-err': 'box-input'">
+                          <input style="width: 100%;outline: unset !important;" type="text"
+                            v-model="formData.conTenMain">
+                        </label>
+                        <div style="margin-left: 8px;">
+                          <button class="btn btn-primary" type="submit">Gửi</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
-</div>
 </body>
 
 <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
@@ -386,7 +397,7 @@
       tinNhanMoi: 0,
       donHangMoi: 0,
       checkInput: false,
-      checkStatus:true
+      checkStatus: true
     },
     mounted() {
       const socket = io();
@@ -420,21 +431,21 @@
             'Content-Type': 'application/json'
           }
         })
-            .then(response => response.json())
-            .then(data => {
-              const sortedData = data.sort((a, b) => {
-                if (a.status === b.status) {
-                  return 0;
-                }
-                return a.status ? -1 : 1;
-              });
-              self.dataTitleChat = sortedData;
-              self.tinNhanMoi = sortedData.filter(item => item.status === true).length
-              self.checkStatus = false
-            })
-            .catch(error => {
-              console.error(error);
+          .then(response => response.json())
+          .then(data => {
+            const sortedData = data.sort((a, b) => {
+              if (a.status === b.status) {
+                return 0;
+              }
+              return a.status ? -1 : 1;
             });
+            self.dataTitleChat = sortedData;
+            self.tinNhanMoi = sortedData.filter(item => item.status === true).length
+            self.checkStatus = false
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       OpenChatUser: function (id) {
         var self = this;
@@ -447,23 +458,23 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({user: id})
+          body: JSON.stringify({ user: id })
         })
-            .then(response => response.json())
-            .then(data => {
-              self.idUser = id
-              self.nameUser = data.fullName
-              self.dataContentChat = data.content
-              self.checkClick = false;
-              self.checkInput = false
-              setTimeout(self.scrollViewEnd,100)
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            self.idUser = id
+            self.nameUser = data.fullName
+            self.dataContentChat = data.content
+            self.checkClick = false;
+            self.checkInput = false
+            setTimeout(self.scrollViewEnd, 100)
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
 
-      scrollViewEnd(){
+      scrollViewEnd() {
         var element = document.querySelector('.box-Content-One-chat');
         element.scrollTop = element.scrollHeight;
       },
@@ -475,13 +486,13 @@
             'Content-Type': 'application/json'
           },
         })
-            .then(response => response.json())
-            .then(data => {
-              self.donHangMoi = data.length
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            self.donHangMoi = data.length
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       submitContentChat() {
         var self = this;
@@ -497,17 +508,17 @@
             },
             body: JSON.stringify(self.formData)
           })
-              .then(response => response.json())
-              .then(data => {
-                if (data === true) {
-                  socket.emit('client-send');
-                  self.formData.conTenMain = '';
-                  self.checkInput = false
-                }
-              })
-              .catch(error => {
-                console.error(error);
-              });
+            .then(response => response.json())
+            .then(data => {
+              if (data === true) {
+                socket.emit('client-send');
+                self.formData.conTenMain = '';
+                self.checkInput = false
+              }
+            })
+            .catch(error => {
+              console.error(error);
+            });
 
           fetch('/home/notificationChatShop', {
             method: 'POST',
@@ -523,4 +534,5 @@
   vm.GetAllDataChat();
   vm.GetDataCart();
 </script>
+
 </html>

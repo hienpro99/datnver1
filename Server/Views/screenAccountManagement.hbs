@@ -324,23 +324,28 @@
     .box-connect {
       margin: 7px;
     }
+
     .th-No {
       width: 55px;
       text-align: center;
     }
+
     .text_Align {
       padding: 4px 14px;
       text-align: center;
     }
+
     .table td {
       padding: 5px !important;
       vertical-align: middle !important;
     }
-    .th-Status{
+
+    .th-Status {
       width: 200px;
       text-align: center;
     }
-    .th-Username{
+
+    .th-Username {
       width: 300px;
       text-align: center;
     }
@@ -348,200 +353,208 @@
 </head>
 
 <body class="bg-gray-200">
-<div id="dataALL">
-  <div class="body-Main">
-    <div class="box-Main-One">
-      <div class="box-Text-Title">
-        <div class="text-Title">Shop BipBip</div>
-      </div>
-      <div class="item-click">
-        <a href="/statistic" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
-           style="text-decoration: none ">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="analytics.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Thống kê</div>
-          </div>
-        </a>
-        <a href="/home" class=" cursor-pointer mess ml-3 mt-3 w-10/12"
-           style="display: flex;text-decoration: none ">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="dashboard.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Đơn Hàng</div>
-          </div>
-          <span class="badge" style="color: white;font-size: 14px;">\{{donHangMoi}}</span>
-        </a>
-        <a href="/mess" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none">
-          <div class="flex" style="padding: 12px;">
-            <div>
-              <img class="w-5 h-5 " src="messages.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Tin Nhắn</div>
-          </div>
-          <span class="badge" style="color: white;font-size: 14px;">\{{tinNhanMoi}}</span>
-        </a>
-        <a href="/notifications" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="notifications.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100">Thông báo</div>
-          </div>
-        </a>
-        <a href="/accountManagement" class="cursor-pointer mess ml-3 mt-3 w-10/12"
-           style="border-bottom-width: 1px; display: flex; text-decoration: none">
-          <div class="flex" style="padding: 12px;">
-            <div>
-              <img class="w-5 h-5 " src="iconuser.png" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100 ">Quản Lý người dùng</div>
-          </div>
-        </a>
-        <a href="/warehouse" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
-          <div class="flex" style=" padding: 12px;">
-            <div>
-              <img class="w-5 h-5" src="kho.svg" alt="">
-            </div>
-            <div class="mx-3 text-sm text-gray-100">Kho Hàng</div>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="box-Main-Two">
-      <div class="box-Main-Extra">
-        <div class="box-infomation">
-          <div class="information">
-            <div class="information-Admin">
-              <img src="person.png" class="w-10 h-10" alt="">
-              <span>Admin</span>
-            </div>
-            <div>
-              <a class="link-a" href="/login">Đăng xuất</a>
-            </div>
-          </div>
+  <div id="dataALL">
+    <div class="body-Main">
+      <div class="box-Main-One">
+        <div class="box-Text-Title">
+          <div class="text-Title">Shop BipBip</div>
         </div>
-
-        <div class="box-order-Main">
-          <div class="load-Spinner" :class="checkStatus ? ' ' : 'display_None' ">
-            <div class="spinner-border text-primary"></div>
+        <div class="item-click">
+          <a href="/statistic" class=" cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none ">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="analytics.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Thống kê</div>
+            </div>
+          </a>
+          <a href="/home" class=" cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex;text-decoration: none ">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="dashboard.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Đơn Hàng</div>
+            </div>
+            <span class="badge" style="color: white;font-size: 14px;">\{{donHangMoi}}</span>
+          </a>
+          <a href="/mess" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="display: flex; text-decoration: none">
+            <div class="flex" style="padding: 12px;">
+              <div>
+                <img class="w-5 h-5 " src="messages.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Tin Nhắn</div>
+            </div>
+            <span class="badge" style="color: white;font-size: 14px;">\{{tinNhanMoi}}</span>
+          </a>
+          <a href="/notifications" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="notifications.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100">Thông báo</div>
+            </div>
+          </a>
+          <a href="/accountManagement" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+            style="display: flex; text-decoration: none">
+            <div class="flex" style="padding: 12px;">
+              <div>
+                <img class="w-5 h-5 " src="iconuser.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Quản Lý người dùng</div>
+            </div>
+          </a>
+          <a href="/customer" class="cursor-pointer mess ml-3 mt-3 w-10/12"
+            style="display: flex; text-decoration: none">
+            <div class="flex" style="padding: 12px;">
+              <div>
+                <img class="w-5 h-5 " src="nhansu.png" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100 ">Danh Sách Nhân Sự</div>
+            </div>
+          </a>
+          <a href="/warehouse" class="cursor-pointer mess ml-3 mt-3 w-10/12" style="text-decoration: none">
+            <div class="flex" style=" padding: 12px;">
+              <div>
+                <img class="w-5 h-5" src="kho.svg" alt="">
+              </div>
+              <div class="mx-3 text-sm text-gray-100">Kho Hàng</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="box-Main-Two">
+        <div class="box-Main-Extra">
+          <div class="box-infomation">
+            <div class="information">
+              <div class="information-Admin">
+                <img src="person.png" class="w-10 h-10" alt="">
+                <span>Admin</span>
+              </div>
+              <div>
+                <a class="link-a" href="/logout">Đăng xuất</a>
+              </div>
+            </div>
           </div>
-          <div :class="checkStatus ? 'display_None' : ' ' ">
-            <div class="box-Main">
-              <div class="box-data">
-                <div class="card-header" style="height: 11%;display: flex;justify-content: space-between;">
 
-                  <div style=" display: flex; width: 23%;">
-                    <div class="dropdown">
-                      <button class="btn btn-outline-secondary dropdown-toggle float-left"
-                              type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        \{{ selectedValueStatus }}
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" @click="selectOptionStatus('all')" style="cursor: pointer;">Tất cả
-                          trạng thái</a></li>
-                        <li><a class="dropdown-item" @click="selectOptionStatus('activity')" style="cursor: pointer;">Đang
-                          hoạt động</a></li>
-                        <li><a class="dropdown-item" @click="selectOptionStatus('block')" style="cursor: pointer;">Đã
-                          chặn</a></li>
-                      </ul>
+          <div class="box-order-Main">
+            <div class="load-Spinner" :class="checkStatus ? ' ' : 'display_None' ">
+              <div class="spinner-border text-primary"></div>
+            </div>
+            <div :class="checkStatus ? 'display_None' : ' ' ">
+              <div class="box-Main">
+                <div class="box-data">
+                  <div class="card-header" style="height: 11%;display: flex;justify-content: space-between;">
+
+                    <div style=" display: flex; width: 23%;">
+                      <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle float-left" type="button"
+                          data-bs-toggle="dropdown" aria-expanded="false">
+                          \{{ selectedValueStatus }}
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" @click="selectOptionStatus('all')" style="cursor: pointer;">Tất
+                              cả
+                              trạng thái</a></li>
+                          <li><a class="dropdown-item" @click="selectOptionStatus('activity')"
+                              style="cursor: pointer;">Đang
+                              hoạt động</a></li>
+                          <li><a class="dropdown-item" @click="selectOptionStatus('block')" style="cursor: pointer;">Đã
+                              chặn</a></li>
+                        </ul>
+                      </div>
+
+                      <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle float-left" type="button"
+                          data-bs-toggle="dropdown" aria-expanded="false" style="margin-left:10px; ">
+                          \{{selectedValueSort}}
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li style="cursor: pointer;"><a class="dropdown-item"
+                              @click="selectOptionSort('lowtohight')">Cũ
+                              nhất</a></li>
+                          <li style="cursor: pointer;"><a class="dropdown-item"
+                              @click="selectOptionSort('highttolow')">Mới
+                              nhất</a></li>
+                        </ul>
+                      </div>
                     </div>
 
-                    <div class="dropdown">
-                      <button class="btn btn-outline-secondary dropdown-toggle float-left" type="button"
-                              data-bs-toggle="dropdown" aria-expanded="false" style="margin-left:10px; ">
-                        \{{selectedValueSort}}
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li style="cursor: pointer;"><a class="dropdown-item" @click="selectOptionSort('lowtohight')">Cũ
-                          nhất</a></li>
-                        <li style="cursor: pointer;"><a class="dropdown-item" @click="selectOptionSort('highttolow')">Mới
-                          nhất</a></li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div class="card-search">
-                    <div class="search-container">
-                      <input v-model="searchData" type="text" class="search-input" id="searchInput"
-                             placeholder="Tìm kiếm..." autocomplete="off">
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body-product">
-                  <div style="height: 93%;padding: 8px 24px;">
-                    <table class="table table-bordered ">
-                      <thead>
-                      <tr>
-                        <th class="th-No">STT</th>
-                        <th class="th-Username ">Tên</th>
-                        <th style="text-align: center;">Email</th>
-                        <th class="th-Status">Trạng thái</th>
-                        <th style="text-align: center;width: 10%">Thao tác</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-
-                      <tr v-for="(item,index) in dataUserAll[indexSize-1]">
-                        <td class="text_Align">\{{((indexSize-1) * 10)+index+1}}</td>
-                        <td class="textUser">
-                          <div v-if="item.profile.length>0">
-                            \{{item.profile[0].fullname}}
-                          </div>
-                          <div v-if="item.profile.length<0">
-
-                          </div>
-                        </td>
-                        <td>\{{item.username}}</td>
-                        <td  class="text_Align">
-                          <div v-if="item.status === false">
-                            Đang hoạt động
-                          </div>
-                          <div v-if="item.status === true">
-                            Đã bị chặn
-                          </div>
-                        </td>
-
-                        <td style="display: flex;justify-content: space-around">
-                          <div>
-                            <img v-if="item.status === false"
-                                 @click="openTransferStatusBlock(item)" class="icon_thaoTac"
-                                 src="unlock.png">
-                            <img v-if="item.status === true"
-                                 @click="openTransferStatusUnBlock(item)"
-                                 class="icon_thaoTac"
-                                 src="lock.png">
-                          </div>
-                          <div>
-                            <img @click="openShowProfile(item)" class="icon_thaoTac"
-                                 src="show.png">
-                          </div>
-
-                        </td>
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="box-size-table" v-if="toatalWare > 10">
-                    <div class="text-box-size-table">\{{sizeTable(indexSize)}} của tổng số \{{toatalWare}}</div>
-                    <div class="box-arrow">
-                      <div class="box-extra-arrow" @click="backSize(dataUserAll)">
-                        <img src="next.png" style="width: 24px" alt="">
-                      </div>
-                      <div class="box-extra-arrow" @click="arrowBackSize(dataUserAll)">
-                        <img src="back-arrow.png" style="width: 24px" alt="">
-                      </div>
-                      <div class="box-extra-arrow" @click="arrowNextSize(dataUserAll)">
-                        <img src="right-arrow.png" style="width: 24px" alt="">
-                      </div>
-                      <div class="box-extra-arrow" @click="nextSize(dataUserAll)">
-                        <img src="back.png" style="width: 24px" alt="">
+                    <div class="card-search">
+                      <div class="search-container">
+                        <input v-model="searchData" type="text" class="search-input" id="searchInput"
+                          placeholder="Tìm kiếm..." autocomplete="off">
                       </div>
                     </div>
                   </div>
+                  <div class="card-body-product">
+                    <div style="height: 93%;padding: 8px 24px;">
+                      <table class="table table-bordered ">
+                        <thead>
+                          <tr>
+                            <th class="th-No">STT</th>
+                            <th class="th-Username ">Tên</th>
+                            <th style="text-align: center;">Email</th>
+                            <th class="th-Status">Trạng thái</th>
+                            <th style="text-align: center;width: 10%">Thao tác</th>
+                          </tr>
+                        </thead>
+                        <tbody>
 
+                          <tr v-for="(item,index) in dataUserAll[indexSize-1]">
+                            <td class="text_Align">\{{((indexSize-1) * 10)+index+1}}</td>
+                            <td class="textUser">
+                              <div v-if="item.profile.length>0">
+                                \{{item.profile[0].fullname}}
+                              </div>
+                              <div v-if="item.profile.length<0">
+
+                              </div>
+                            </td>
+                            <td>\{{item.username}}</td>
+                            <td class="text_Align">
+                              <div v-if="item.status === false">
+                                Đang hoạt động
+                              </div>
+                              <div v-if="item.status === true">
+                                Đã bị chặn
+                              </div>
+                            </td>
+
+                            <td style="display: flex;justify-content: space-around">
+                              <div>
+                                <img v-if="item.status === false" @click="openTransferStatusBlock(item)"
+                                  class="icon_thaoTac" src="unlock.png">
+                                <img v-if="item.status === true" @click="openTransferStatusUnBlock(item)"
+                                  class="icon_thaoTac" src="lock.png">
+                              </div>
+                              <div>
+                                <img @click="openShowProfile(item)" class="icon_thaoTac" src="show.png">
+                              </div>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="box-size-table" v-if="toatalWare > 10">
+                      <div class="text-box-size-table">\{{sizeTable(indexSize)}} của tổng số \{{toatalWare}}</div>
+                      <div class="box-arrow">
+                        <div class="box-extra-arrow" @click="backSize(dataUserAll)">
+                          <img src="next.png" style="width: 24px" alt="">
+                        </div>
+                        <div class="box-extra-arrow" @click="arrowBackSize(dataUserAll)">
+                          <img src="back-arrow.png" style="width: 24px" alt="">
+                        </div>
+                        <div class="box-extra-arrow" @click="arrowNextSize(dataUserAll)">
+                          <img src="right-arrow.png" style="width: 24px" alt="">
+                        </div>
+                        <div class="box-extra-arrow" @click="nextSize(dataUserAll)">
+                          <img src="back.png" style="width: 24px" alt="">
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
               </div>
             </div>
@@ -549,123 +562,123 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="modal fade" id="unBlock" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Bỏ chặn người dùng</h5>
-          <button type="button" class="close" @click="closeTransferStatusUnBlock" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Bạn có chắc chắn muốn bỏ chặn người dùng có tài khoản \{{dataBlock.username}} không?</p>
-        </div>
-        <div class="modal-footer">
-          <form @submit.prevent="submitUnBlock">
-            <button type="button" class="btn btn-secondary" @click="closeTransferStatusUnBlock">Hủy</button>
-            <button type="submit" class="btn btn-primary">Bỏ chặn</button>
-          </form>
-
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="block" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-       aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Chặn người dùng</h5>
-          <button type="button" class="close" @click="closeTransferStatusBlock()" data-dismiss="modal"
-                  aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form @submit.prevent="submitBlock">
+    <div class="modal fade" id="unBlock" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Bỏ chặn người dùng</h5>
+            <button type="button" class="close" @click="closeTransferStatusUnBlock" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
           <div class="modal-body">
-            <label>Email người dùng: \{{dataBlock.username}}</label>
-            <br>
-            <label for="blockReason">Nhập nội dung chặn:</label>
-            <input type="text" class="form-control" v-model="formData.blockReason" required>
+            <p>Bạn có chắc chắn muốn bỏ chặn người dùng có tài khoản \{{dataBlock.username}} không?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="closeTransferStatusBlock">Hủy
+            <form @submit.prevent="submitUnBlock">
+              <button type="button" class="btn btn-secondary" @click="closeTransferStatusUnBlock">Hủy</button>
+              <button type="submit" class="btn btn-primary">Bỏ chặn</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="block" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Chặn người dùng</h5>
+            <button type="button" class="close" @click="closeTransferStatusBlock()" data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
             </button>
-            <button type="submit" class="btn btn-primary">Chặn</button>
           </div>
-        </form>
+          <form @submit.prevent="submitBlock">
+            <div class="modal-body">
+              <label>Email người dùng: \{{dataBlock.username}}</label>
+              <br>
+              <label for="blockReason">Nhập nội dung chặn:</label>
+              <input type="text" class="form-control" v-model="formData.blockReason" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="closeTransferStatusBlock">Hủy
+              </button>
+              <button type="submit" class="btn btn-primary">Chặn</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal fade" id="detailUser" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Thông tin chi tiết người dùng</h5>
+            <button type="button" class="close" data-dismiss="modal" @click="closeShowProfile" aria-label="Đóng">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <div class="box-extra-one">
+                <div class="img-box-Detail">
+                  <img :src="dataBlock.profile && dataBlock.profile.length > 0 ? dataBlock.profile[0].avatar : ''"
+                    alt="Avatar" class="imgShowDetail">
+                </div>
+                <div class="box-text-information">
+                  <div class="textShowDetail">Họ và tên: \{{dataBlock.profile && dataBlock.profile.length > 0 ?
+                    dataBlock.profile[0].fullname : ''}}
+                  </div>
+                  <div class="textShowDetail">Giới tính: \{{dataBlock.profile && dataBlock.profile.length > 0 ?
+                    dataBlock.profile[0].gender : ''}}
+                  </div>
+                  <div class="textShowDetail">Ngày sinh: \{{dataBlock.profile && dataBlock.profile.length > 0 ?
+                    dataBlock.profile[0].birthday : ''}}
+                  </div>
+                  <div class="textShowDetail">Email: \{{dataBlock.username}}</div>
+                </div>
+              </div>
+              <div style="display: flex; width: 23%; justify-content: space-between;" v-if="dataAddres.length > 1">
+                <div>
+                  Địa chỉ số
+                </div>
+                <div>
+                  <select class="dropdown-Op" v-model="selectNumber">
+                    <option v-for="(item,index) in dataAddres" :value="index+1" :key="index+1">\{{index+1}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="box-connect">
+                <div class="textShowDetail" v-if="dataAddres.length > 0">Số điện thoại: \{{dataAddres &&
+                  dataAddres.length
+                  > 0 ? dataAddres[selectNumber-1].phone :
+                  ''}}
+                </div>
+                <div class="textShowDetail" v-if="dataAddres.length > 0">Địa chỉ: \{{dataAddres && dataAddres.length > 0
+                  ?
+                  dataAddres[selectNumber-1].address :
+                  ''}}
+                </div>
+              </div>
+              <div v-if="dataBlock.status === true">
+                Lý do bị chặn: \{{dataBlock.block_reason}}
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" @click="closeShowProfile" data-dismiss="modal">Đóng</button>
+          </div>
+        </div>
       </div>
     </div>
 
   </div>
-  <div class="modal fade" id="detailUser" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Thông tin chi tiết người dùng</h5>
-          <button type="button" class="close" data-dismiss="modal" @click="closeShowProfile" aria-label="Đóng">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div>
-            <div class="box-extra-one">
-              <div class="img-box-Detail">
-                <img :src="dataBlock.profile && dataBlock.profile.length > 0 ? dataBlock.profile[0].avatar : ''"
-                     alt="Avatar"
-                     class="imgShowDetail">
-              </div>
-              <div class="box-text-information">
-                <div class="textShowDetail">Họ và tên: \{{dataBlock.profile && dataBlock.profile.length > 0 ?
-                  dataBlock.profile[0].fullname : ''}}
-                </div>
-                <div class="textShowDetail">Giới tính: \{{dataBlock.profile && dataBlock.profile.length > 0 ?
-                  dataBlock.profile[0].gender : ''}}
-                </div>
-                <div class="textShowDetail">Ngày sinh: \{{dataBlock.profile && dataBlock.profile.length > 0 ?
-                  dataBlock.profile[0].birthday : ''}}
-                </div>
-                <div class="textShowDetail">Email: \{{dataBlock.username}}</div>
-              </div>
-            </div>
-            <div style="display: flex; width: 23%; justify-content: space-between;" v-if="dataAddres.length > 1">
-              <div>
-                Địa chỉ số
-              </div>
-              <div>
-                <select class="dropdown-Op" v-model="selectNumber" >
-                  <option v-for="(item,index) in dataAddres" :value="index+1" :key="index+1">\{{index+1}}</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="box-connect">
-              <div class="textShowDetail" v-if="dataAddres.length > 0">Số điện thoại: \{{dataAddres && dataAddres.length
-                > 0 ? dataAddres[selectNumber-1].phone :
-                ''}}
-              </div>
-              <div class="textShowDetail" v-if="dataAddres.length > 0">Địa chỉ: \{{dataAddres && dataAddres.length > 0 ?
-                dataAddres[selectNumber-1].address :
-                ''}}
-              </div>
-            </div>
-            <div v-if="dataBlock.status === true">
-              Lý do bị chặn: \{{dataBlock.block_reason}}
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" @click="closeShowProfile" data-dismiss="modal">Đóng</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
 
 </body>
 
@@ -739,16 +752,16 @@
             userId: self.dataBlock._id,
           }),
         })
-            .then(response => response.json())
-            .then(data => {
-              if (data) {
-                self.closeTransferStatusUnBlock()
-                self.GetDatUser()
-              }
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            if (data) {
+              self.closeTransferStatusUnBlock()
+              self.GetDatUser()
+            }
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       submitBlock() {
         var self = this;
@@ -760,16 +773,16 @@
           },
           body: JSON.stringify(self.formData)
         })
-            .then(response => response.json())
-            .then(data => {
-              if (data) {
-                self.GetDatUser()
-                self.closeTransferStatusBlock()
-              }
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            if (data) {
+              self.GetDatUser()
+              self.closeTransferStatusBlock()
+            }
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       openShowProfile(data) {
         var self = this
@@ -780,15 +793,15 @@
             'Content-Type': 'application/json'
           },
         })
-            .then(response => response.json())
-            .then(data => {
-              if (data) {
-                self.dataAddres = data
-              }
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            if (data) {
+              self.dataAddres = data
+            }
+          })
+          .catch(error => {
+            console.error(error);
+          });
         $('#detailUser').modal('show');
       },
       closeShowProfile() {
@@ -908,20 +921,20 @@
             'Content-Type': 'application/json'
           }
         })
-            .then(response => response.json())
-            .then(data => {
-              const sortedData = data.sort((a, b) => {
-                if (a.status === b.status) {
-                  return 0;
-                }
-                return a.status ? -1 : 1;
-              });
-              self.tinNhanMoi = sortedData.filter(item => item.status === true).length
-
-            })
-            .catch(error => {
-              console.error(error);
+          .then(response => response.json())
+          .then(data => {
+            const sortedData = data.sort((a, b) => {
+              if (a.status === b.status) {
+                return 0;
+              }
+              return a.status ? -1 : 1;
             });
+            self.tinNhanMoi = sortedData.filter(item => item.status === true).length
+
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       GetDataCart: function () {
         var self = this;
@@ -931,13 +944,13 @@
             'Content-Type': 'application/json'
           },
         })
-            .then(response => response.json())
-            .then(data => {
-              self.donHangMoi = data.length
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            self.donHangMoi = data.length
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
       GetDatUser: function () {
         var self = this;
@@ -953,18 +966,18 @@
             'Content-Type': 'application/json'
           },
         })
-            .then(response => response.json())
-            .then(data => {
-              var dataAll = splitList(data)
-              console.log("Start")
-              self.dataUserAll = dataAll
-              self.toatalWare = data.length
-              self.dataSearch = data
-              self.checkStatus = false
-            })
-            .catch(error => {
-              console.error(error);
-            });
+          .then(response => response.json())
+          .then(data => {
+            var dataAll = splitList(data)
+            console.log("Start")
+            self.dataUserAll = dataAll
+            self.toatalWare = data.length
+            self.dataSearch = data
+            self.checkStatus = false
+          })
+          .catch(error => {
+            console.error(error);
+          });
       },
 
 
@@ -985,4 +998,5 @@
 
 
 </script>
+
 </html>
