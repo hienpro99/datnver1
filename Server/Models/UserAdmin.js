@@ -18,6 +18,10 @@ const userAdminSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    workDateRange: {
+        start: { type: String },
+        end: { type: String }
+    },
     status: {
         type: Boolean,
         default: false,

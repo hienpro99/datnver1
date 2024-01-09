@@ -167,6 +167,8 @@ app.get('/customer', requireLogin, async(req, res) => {
 });
 
 
+const moment = require('moment');
+
 app.post('/web/login', async(req, res) => {
     try {
         const { username, password } = req.body;
@@ -174,6 +176,32 @@ app.post('/web/login', async(req, res) => {
 
         if (!useradmin || password !== useradmin.password) {
             res.render('../Views/login.hbs', { error: 'Tài khoản hoặc mật khẩu không đúng' });
+            return;
+        }
+        if (useradmin.level == 'admin') {
+            const token = createToken(useradmin);
+            const bearerToken = `Bearer ${token}`;
+            res.setHeader('Authorization', bearerToken);
+            req.session.useradmin = {
+                id: useradmin._id,
+                username: useradmin.username,
+                level: useradmin.level
+            };
+
+            res.redirect('/home');
+            return;
+        }
+        const currentDate = moment().format('YYYY-MM-DD');
+        const workDateStart = moment(useradmin.workDateRange.start, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        const workDateEnd = moment(useradmin.workDateRange.end, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
+
+        if (currentDate < workDateStart || currentDate > workDateEnd) {
+            res.render('../Views/login.hbs', { error: 'Bạn không có lịch làm việc vào hôm nay, Hãy Nghi ngơi' });
+            return;
+        }
+        if (!useradmin.workDateRange || !useradmin.workDateRange.start || !useradmin.workDateRange.end) {
+            res.render('../Views/login.hbs', { error: 'Bạn chưa được phân ca làm việc. vui lòng liên hệ admin' });
             return;
         }
 
@@ -192,12 +220,38 @@ app.post('/web/login', async(req, res) => {
     }
 });
 
+
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/login');
 });
 
+app.post('/updateWorkDates/:userId', async(req, res) => {
+    const userId = req.params.userId;
+    const { workDateStart, workDateEnd } = req.body;
 
+    try {
+        await UserAdmin.findByIdAndUpdate(userId, { 'workDateRange.start': workDateStart, 'workDateRange.end': workDateEnd });
+        res.status(200).json({ success: true, message: 'Cập nhật ngày làm việc thành công' });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+app.delete('/deleteUser/:userId', async(req, res) => {
+    try {
+        const userId = req.params.userId;
+        const deletedUser = await UserAdmin.findByIdAndDelete(userId);
+
+        if (deletedUser) {
+            res.json({ success: true });
+        } else {
+            res.json({ success: false, message: 'Không tìm thấy người dùng' });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.json({ success: false, message: 'Lỗi khi xóa tài khoản' });
+    }
+});
 app.get('/accountManagement', requireLogin, async(req, res) => {
     try {
         const user = req.session.useradmin;
@@ -224,16 +278,16 @@ app.post("/web/register", requireLogin, async(req, res) => {
 
         if (existingUser) {
             const error = "Tài khoản đã tồn tại";
-            res.redirect("/login");
+            res.render('../Views/login.hbs', { error: 'Tài khoản đã tồn tại' });
         } else {
 
             if (user.level !== "admin") {
-                res.render('../Views/login.hbs', { error: 'vui lòng đăng nhập tài khoản admin để sử dụng chức năng này' });
+                res.render('../Views/login.hbs', { error: 'vui lòng đăng nhập tài khoản ADMIN để sử dụng chức năng này' });
             } else {
                 if (password !== repassword) {
-                    res.flash("Xác nhận mật khẩu mới không khớp");
                     const error = "Xác nhận mật khẩu mới không khớp";
-                    res.redirect("/login");
+                    res.render('../Views/login.hbs', { error: 'Xác nhận mật khẩu mới không khớp' });
+                    return;
                 }
                 const newUser = new UserAdmin({
                     username,
