@@ -225,6 +225,38 @@ app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/login');
 });
+app.get('/change-password', (req, res) => {
+    const userid = req.session.useradmin ? req.session.useradmin.id : null;
+    if (!userid) {
+        return res.redirect('/login');
+    }
+    res.render('changepassword', { userid });
+});
+app.post('/change-password/:userid', async(req, res) => {
+    const { userid } = req.params;
+    const { oldPassword, newPassword } = req.body;
+
+    try {
+        const user = await UserAdmin.findById(userid);
+
+        if (!user) {
+            return res.status(404).json({ message: 'Người dùng không tồn tại' });
+        }
+
+        if (user.password !== oldPassword) {
+            return res.status(401).json({ message: 'Mật khẩu cũ không đúng' });
+        }
+
+        user.password = newPassword;
+        await user.save();
+
+        res.json({ message: 'Mật khẩu đã được thay đổi thành công' });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Đã xảy ra lỗi trong quá trình xử lý yêu cầu' });
+    }
+});
 
 app.post('/updateWorkDates/:userId', async(req, res) => {
     const userId = req.params.userId;
