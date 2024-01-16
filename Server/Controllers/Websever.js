@@ -343,7 +343,11 @@ app.get('/notifications', async(req, res) => {
     res.render('../Views/screenNotifications.hbs');
 });
 app.get('/statistic', requireLogin, async(req, res) => {
+    const user = req.session.useradmin;
     try {
+        if (user.level !== "admin") {
+            res.render('../Views/screenHome.hbs', { error: 'vui lòng đăng nhập tài khoản ADMIN để sử dụng chức năng này' });
+        }
         res.render('../Views/screenStatistics.hbs');
     } catch (error) {
         res.status(500).json({ message: error.message });
